@@ -59,7 +59,7 @@ class Doc2Download1
         'align' => 'center',
         ));
         $section->addText('Обвинительный акт', null, 'topP');
-        $section->addText('по обвинению ' . $values[suspect] ' в совершении преступления, предусмотренного ', null, 'topP');
+        $section->addText('по обвинению ' . $values['suspect'] . 'в совершении преступления, предусмотренного ', null, 'topP');
         $section->addTextBreak(1);
         $section->addText('ОБВИНЯЕТСЯ:', null, 'topP');
         
