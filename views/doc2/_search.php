@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'createdate') ?>
 
-    <?= $form->field($model, 'number'=>"1") ?>
+    <?= $form->field($model, 'number') ?>
 
     <?php // $form->field($model, 'rank') ?>
 

@@ -29,6 +29,7 @@ class m181006_053109_create_table_document2 extends Migration
             'crime' => $this->text()->comment('Судимости'),
             'pasport' => $this->text()->comment('Док-т удост. личн.'),
             
+            
         ], 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB');
     }
 
