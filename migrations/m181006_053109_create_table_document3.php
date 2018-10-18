@@ -5,12 +5,12 @@ use yii\db\Migration;
 /**
  * Class m181006_053109_create_table_document2
  */
-class m181006_053109_create_table_document2 extends Migration
+class m181006_053109_create_table_document3 extends Migration
 {
     // Use up()/down() to run migration code without a transaction.
     public function up()
     {
-        $this->createTable('document2', [
+        $this->createTable('document3', [
             'id' => $this->primaryKey(),
             'createdate' => $this->text() ->comment('Дата допроса'),
             'number' => $this->integer()->comment('Номер дела'),
