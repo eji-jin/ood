@@ -43,7 +43,8 @@ AppAsset::register($this);
             //Yii::$app->user->can('useForms') ? ['label' => 'Документ', 'url' => ['/document1/index']] : '',
             //Документ 2
             Yii::$app->user->can('useForms') ? ['label' => 'Документ', 'url' => ['/doc2/index']] : '',
-            
+            ['label' => 'Дела', 'url' => ['deal/index']],
+            ['label' => 'Протоколы', 'url' => ['protocol/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Вход', 'url' => ['/site/login']]
             ) : (
