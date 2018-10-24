@@ -21,6 +21,7 @@ class ProtocolSearch extends Protocol
             [['id', 'deal_id'], 'integer'],
             [['birthplace', 'residence', 'crime', 'pasport', 'other', 'indications'], 'text'],
             [['timeStart', 'timeStop', 'roleInThis', 'createdate', 'city', 'room', 'suspect', 'birthdate', 'nat', 'educat', 'famstat', 'workplace', 'duty', 'otherPerson', 'hardware', 'incriminate'], 'string'],
+
         ];
     }
 

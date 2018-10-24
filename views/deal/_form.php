@@ -14,6 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'number')->textInput() ?>
 
+
     <?= $form->field($model, 'position')->textInput() ?>
 
     <?= $form->field($model, 'rank')->textInput() ?>
@@ -21,10 +22,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'name')->textInput() ?>
 
     <?= $form->field($model, 'officer')->textInput() ?>
-    
-    
+
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

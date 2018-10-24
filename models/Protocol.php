@@ -34,6 +34,7 @@ class Protocol extends \yii\db\ActiveRecord
             [['deal_id'], 'integer'],
             [['birthplace', 'residence', 'crime', 'pasport', 'other', 'indications'], 'text'],
             [['timeStart', 'timeStop', 'roleInThis', 'createdate', 'city', 'room', 'suspect', 'birthdate', 'nat', 'educat', 'famstat', 'workplace', 'duty', 'otherPerson', 'hardware', 'incriminate'], 'string'],
+
             [['deal_id'], 'exist', 'skipOnError' => true, 'targetClass' => Deal::className(), 'targetAttribute' => ['deal_id' => 'id']],
         ];
     }
@@ -44,7 +45,6 @@ class Protocol extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-
             'id' => 'ID',
             'deal_id' => 'Номер дела',
             'timeStart' => 'Время начала допроса',
@@ -69,6 +69,7 @@ class Protocol extends \yii\db\ActiveRecord
             'pasport' => 'Док-т удост. личн.',
             'other' => 'Др. данные',
             'indications' => 'Показания',
+
         ];
     }
 

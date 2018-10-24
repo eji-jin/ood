@@ -27,7 +27,6 @@ class m181018_083849_create_protocol_table extends Migration
             'room' => $this->text()->comment('№ кабинета'),
             'suspect' => $this->text()->comment('Ф.И.О. допрашиваемого'),
 
-
             'birthdate' => $this->text()->comment('Дата рождения'),
             'birthplace' => $this->text()->comment('Место рождения'),
             'residence' => $this->text()->comment('Проживает'),
@@ -35,7 +34,6 @@ class m181018_083849_create_protocol_table extends Migration
             'educat' => $this->text()->comment('Образование'),
             'famstat' => $this->text()->comment('Сем. положение'),
             'workplace' => $this->text()->comment('Место работы, учебы'),
-
 
             'duty' => $this->text()->comment('Воинская обязанность'),
             'crime' => $this->text()->comment('Судимости'),
@@ -48,20 +46,20 @@ class m181018_083849_create_protocol_table extends Migration
 
         ]);
 
-        // creates index for column `deal_number`
+        // creates index for column `deal_id`
         $this->createIndex(
-            'idx-protocol-deal_number',
+            'idx-protocol-deal_id',
             'protocol',
-            'deal_number'
+            'deal_id'
         );
 
         // add foreign key for table `deal`
         $this->addForeignKey(
-            'fk-protocol-deal_number',
+            'fk-protocol-deal_id',
             'protocol',
-            'deal_number',
+            'deal_id',
             'deal',
-            'number',
+            'id',
             'CASCADE'
         );
     }

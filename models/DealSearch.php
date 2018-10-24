@@ -15,12 +15,12 @@ class DealSearch extends Deal
     /**
      * {@inheritdoc}
      */
-    
     public function rules()
     {
         return [
             [['id', 'number'], 'integer'],
             [['position', 'rank', 'name', 'officer'], 'string'],
+
         ];
     }
 

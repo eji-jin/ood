@@ -21,9 +21,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'id') ?>
 
     <?= $form->field($model, 'deal_id') ?>
+
     <?= $form->field($model, 'roleInThis') ?>
     <?= $form->field($model, 'suspect') ?>
-
 
 
     <div class="form-group">

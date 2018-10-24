@@ -30,9 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'deal_id',
-            'field_1',
-            'field_2',
-            
+
             'timeStart',
             'timeStop',
             'roleInThis',
@@ -55,6 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'pasport',
             'other',
             'indications',
+
         ],
     ]) ?>
 

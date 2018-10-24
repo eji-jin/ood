@@ -1,4 +1,5 @@
 <?php
+
 use app\models\Deal;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -6,12 +7,14 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Protocol */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="protocol-form">
 
-    <?php $form = ActiveForm::begin(); 
-    
+
+    <?php $form = ActiveForm::begin(); ?>
+
     <?= $form->field($model, 'deal_id')->dropDownList(
             \yii\helpers\ArrayHelper::map(
                     Deal::find()->select(['id','field_1'])->asArray()->all(),
@@ -25,6 +28,7 @@ use yii\widgets\ActiveForm;
                 'prompt' => 'Выберите дело'
             ]
     ) ?>
+<<<<<<< HEAD
     <?= $form->field($model, 'timeStart')->textInput() ?>
     <?= $form->field($model, 'roleInThis')->textInput() ?>
 
@@ -49,9 +53,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'indications')->textarea(['rows' => 2]) ?>
     <?= $form->field($model, 'timeStop')->textInput() ?>
 
-    
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+
     </div>
 
     <?php ActiveForm::end(); ?>
