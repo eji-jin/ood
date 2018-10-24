@@ -44,9 +44,9 @@ class Protocol extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'deal_id' => 'Deal ID',
-            'field_1' => 'Field 1',
-            'field_2' => 'Field 2',
+            'deal_id' => 'Номер Дела',
+            'field_1' => 'Поле 1',
+            'field_2' => 'Поле 2',
         ];
     }
 

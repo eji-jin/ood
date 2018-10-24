@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\ProtocolSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Protocols';
+$this->title = 'Протоколы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="protocol-index">
@@ -17,12 +17,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Protocol', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(
+                'Создать Протокол',
+                ['create', 'deal_id' => \Yii::$app->request->get('ProtocolSearch')['deal_id']],
+                ['class' => 'btn btn-success']
+        ) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
+        'summary' => 'Показаны {begin} - {end} из {totalCount} элементов',
+        'emptyText' => 'Элементы не найдены',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

@@ -42,9 +42,9 @@ class Deal extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'number' => 'Number',
-            'field_1' => 'Field 1',
-            'field_2' => 'Field 2',
+            'number' => 'Номер',
+            'field_1' => 'Поле 1 (например название)',
+            'field_2' => 'Поле 2',
         ];
     }
 
