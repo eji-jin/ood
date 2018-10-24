@@ -23,7 +23,8 @@ use yii\widgets\ActiveForm;
             [
                 'options' => [
                     $deal_id => ['Selected' => 'selected']
-                ]
+                ],
+                'prompt' => 'Выберите дело'
             ]
     ) ?>
 
