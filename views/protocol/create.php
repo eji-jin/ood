@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Protocol */
 
-$this->title = 'Create Protocol';
-$this->params['breadcrumbs'][] = ['label' => 'Protocols', 'url' => ['index']];
+$this->title = 'Создать протокол';
+$this->params['breadcrumbs'][] = ['label' => 'Протоколы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="protocol-create">
@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'deal_id' => \Yii::$app->request->get('deal_id')
     ]) ?>
 
 </div>
