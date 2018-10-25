@@ -9,8 +9,28 @@ use Yii;
  *
  * @property int $id
  * @property int $deal_id
- * @property string $field_1
- * @property string $field_2
+ * @property string $timeStart
+ * @property string $timeStop
+ * @property string $roleInThis
+ * @property string $createdate
+ * @property string $city
+ * @property string $room
+ * @property string $suspect
+ * @property string $birthdate
+ * @property string $nat
+ * @property string $educat
+ * @property string $famstat
+ * @property string $workplace
+ * @property string $duty
+ * @property string $otherPerson
+ * @property string $hardware
+ * @property string $incriminate
+ * @property string $birthplace
+ * @property string $residence
+ * @property string $crime
+ * @property string $pasport
+ * @property string $other
+ * @property string $indications
  *
  * @property Deal $deal
  */
@@ -32,7 +52,7 @@ class Protocol extends \yii\db\ActiveRecord
         return [
             [['deal_id'], 'required'],
             [['deal_id'], 'integer'],
-            [['birthplace', 'residence', 'crime', 'pasport', 'other', 'indications'], 'text'],
+            [['birthplace', 'residence', 'crime', 'pasport', 'other', 'indications'], 'string'],
             [['timeStart', 'timeStop', 'roleInThis', 'createdate', 'city', 'room', 'suspect', 'birthdate', 'nat', 'educat', 'famstat', 'workplace', 'duty', 'otherPerson', 'hardware', 'incriminate'], 'string'],
 
             [['deal_id'], 'exist', 'skipOnError' => true, 'targetClass' => Deal::className(), 'targetAttribute' => ['deal_id' => 'id']],

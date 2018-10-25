@@ -19,7 +19,7 @@ class ProtocolSearch extends Protocol
     {
         return [
             [['id', 'deal_id'], 'integer'],
-            [['birthplace', 'residence', 'crime', 'pasport', 'other', 'indications'], 'text'],
+            [['birthplace', 'residence', 'crime', 'pasport', 'other', 'indications'], 'string'],
             [['timeStart', 'timeStop', 'roleInThis', 'createdate', 'city', 'room', 'suspect', 'birthdate', 'nat', 'educat', 'famstat', 'workplace', 'duty', 'otherPerson', 'hardware', 'incriminate'], 'string'],
 
         ];
@@ -65,8 +65,28 @@ class ProtocolSearch extends Protocol
             'deal_id' => $this->deal_id,
         ]);
 
-        $query->andFilterWhere(['like', 'field_1', $this->field_1])
-            ->andFilterWhere(['like', 'field_2', $this->field_2]);
+        $query->andFilterWhere(['like', 'timeStart', $this->timeStart])
+            ->andFilterWhere(['like', 'timeStop', $this->timeStop])
+            ->andFilterWhere(['like', 'roleInThis', $this->roleInThis])
+            ->andFilterWhere(['like', 'createdate', $this->createdate])
+            ->andFilterWhere(['like', 'city', $this->city])
+            ->andFilterWhere(['like', 'room', $this->room])
+            ->andFilterWhere(['like', 'suspect', $this->suspect])
+            ->andFilterWhere(['like', 'birthdate', $this->birthdate])
+            ->andFilterWhere(['like', 'nat', $this->nat])
+            ->andFilterWhere(['like', 'educat', $this->educat])
+            ->andFilterWhere(['like', 'famstat', $this->famstat])
+            ->andFilterWhere(['like', 'workplace', $this->workplace])
+            ->andFilterWhere(['like', 'duty', $this->duty])
+            ->andFilterWhere(['like', 'otherPerson', $this->otherPerson])
+            ->andFilterWhere(['like', 'hardware', $this->hardware])
+            ->andFilterWhere(['like', 'incriminate', $this->incriminate])
+            ->andFilterWhere(['like', 'birthplace', $this->birthplace])
+            ->andFilterWhere(['like', 'residence', $this->residence])
+            ->andFilterWhere(['like', 'crime', $this->crime])
+            ->andFilterWhere(['like', 'pasport', $this->pasport])
+            ->andFilterWhere(['like', 'other', $this->other])
+            ->andFilterWhere(['like', 'indications', $this->indications]);
 
         return $dataProvider;
     }

@@ -17,9 +17,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'deal_id')->dropDownList(
             \yii\helpers\ArrayHelper::map(
-                    Deal::find()->select(['id','field_1'])->asArray()->all(),
+                    Deal::find()->select(['id','number'])->asArray()->all(),
                     'id',
-                    'field_1'
+                    'number'
             ),
             [
                 'options' => [
@@ -28,7 +28,6 @@ use yii\widgets\ActiveForm;
                 'prompt' => 'Выберите дело'
             ]
     ) ?>
-<<<<<<< HEAD
     <?= $form->field($model, 'timeStart')->textInput() ?>
     <?= $form->field($model, 'roleInThis')->textInput() ?>
 
