@@ -31,6 +31,7 @@ use yii\jui\InputWidget;
                 'prompt' => 'Выберите дело'
             ]
     ) ?>
+
     <?= $form->field($model, 'timeStart')->textInput() ?>
     <?= $form->field($model, 'roleInThis')->textInput() ?>
     <?= $form->field($model, 'createdate')->textInput() ?>

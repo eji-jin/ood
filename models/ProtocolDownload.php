@@ -80,7 +80,7 @@ class ProtocolDownload
         $section->addText($values['startTime']); 
         $section->addText($values['stopTime']); 
         
-        $section->addText($values['position'] . $values['rank'] . ' ' . $values['name'] . ' в помещении ' . $values['room'] . ' в соответствии с частю второй ст. 46, ст. 180 и 190 УПК РФ допросил по уголовному делу №' . $values['deal_id'] . ' в качестве ' . $values['roleInThis'] );
+        $section->addText($values['position'] . $values['rank'] . ' ' . $values['name'] . ' в помещении ' . $values['room'] . ' в соответствии с частю второй ст. 46, ст. 180 и 190 УПК РФ допросил по уголовному делу №' . $values['number'] . ' в качестве ' . $values['roleInThis'] );
         
          $section->addText('1. Фамилия, Имя, Отчество: ' . $values['suspect']);   
          $section->addText('2. Дата рождения: ' . $values['birthdate']);    
