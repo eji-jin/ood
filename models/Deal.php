@@ -9,9 +9,10 @@ use Yii;
  *
  * @property int $id
  * @property int $number
- * @property string $field_1
- * @property string $field_2
- *
+ * @property string position
+ * @property string rank
+ * @property string name
+ * @property string officer
  * @property Protocol[] $protocols
  */
 class Deal extends \yii\db\ActiveRecord
