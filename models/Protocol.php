@@ -32,7 +32,7 @@ class Protocol extends \yii\db\ActiveRecord
         return [
             [['deal_id'], 'required'],
             [['deal_id'], 'integer'],
-            [['birthplace', 'residence', 'crime', 'pasport', 'other', 'indications'], 'text'],
+            [['birthplace', 'residence', 'crime', 'pasport', 'other', 'indications'], 'string'],
             [['timeStart', 'timeStop', 'roleInThis', 'createdate', 'city', 'room', 'suspect', 'birthdate', 'nat', 'educat', 'famstat', 'workplace', 'duty', 'otherPerson', 'hardware', 'incriminate'], 'string'],
 
             [['deal_id'], 'exist', 'skipOnError' => true, 'targetClass' => Deal::className(), 'targetAttribute' => ['deal_id' => 'id']],

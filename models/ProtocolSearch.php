@@ -19,7 +19,7 @@ class ProtocolSearch extends Protocol
     {
         return [
             [['id', 'deal_id'], 'integer'],
-            [['birthplace', 'residence', 'crime', 'pasport', 'other', 'indications'], 'text'],
+            [['birthplace', 'residence', 'crime', 'pasport', 'other', 'indications'], 'string'],
             [['timeStart', 'timeStop', 'roleInThis', 'createdate', 'city', 'room', 'suspect', 'birthdate', 'nat', 'educat', 'famstat', 'workplace', 'duty', 'otherPerson', 'hardware', 'incriminate'], 'string'],
 
         ];
@@ -65,8 +65,8 @@ class ProtocolSearch extends Protocol
             'deal_id' => $this->deal_id,
         ]);
 
-        $query->andFilterWhere(['like', 'field_1', $this->field_1])
-            ->andFilterWhere(['like', 'field_2', $this->field_2]);
+      //  $query->andFilterWhere(['like', 'field_1', $this->field_1])
+     //       ->andFilterWhere(['like', 'field_2', $this->field_2]);
 
         return $dataProvider;
     }

@@ -64,8 +64,8 @@ class DealSearch extends Deal
             'number' => $this->number,
         ]);
 
-        $query->andFilterWhere(['like', 'field_1', $this->field_1])
-            ->andFilterWhere(['like', 'field_2', $this->field_2]);
+        //$query->andFilterWhere(['like', 'field_1', $this->field_1])
+          //  ->andFilterWhere(['like', 'field_2', $this->field_2]);
 
         return $dataProvider;
     }
