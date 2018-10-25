@@ -6,11 +6,12 @@ use Yii;
 use app\models\Protocol;
 use app\models\ProtocolSearch;
 use app\models\ProtocolDownload;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
+/**s
  * ProtocolController implements the CRUD actions for Protocol model.
  */
 class ProtocolController extends Controller
@@ -27,6 +28,15 @@ class ProtocolController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['useForms']
+                    ]
+                ]
+            ]
         ];
     }
 

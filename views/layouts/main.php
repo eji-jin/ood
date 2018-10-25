@@ -40,11 +40,8 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Главная', 'url' => ['/site/index']],
             Yii::$app->user->can('editUsers') ? ['label' => 'Пользователи', 'url' => ['/user/index']] : '',
-            //Yii::$app->user->can('useForms') ? ['label' => 'Документ', 'url' => ['/document1/index']] : '',
-            //Документ 2
-            Yii::$app->user->can('useForms') ? ['label' => 'Документ', 'url' => ['/doc2/index']] : '',
-            ['label' => 'Дела', 'url' => ['deal/index']],
-            ['label' => 'Протоколы', 'url' => ['protocol/index']],
+            Yii::$app->user->can('useForms') ? ['label' => 'Дела', 'url' => ['deal/index']] : '',
+            Yii::$app->user->can('useForms') ? ['label' => 'Протоколы', 'url' => ['protocol/index']] : '',
             Yii::$app->user->isGuest ? (
                 ['label' => 'Вход', 'url' => ['/site/login']]
             ) : (
