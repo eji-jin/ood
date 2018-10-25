@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Protocol;
+use app\models\SuspectsDownload;
 use Yii;
 use app\models\Deal;
 use app\models\DealSearch;
@@ -139,6 +140,11 @@ class DealController extends Controller
     }
 
     public function actionSuspects($id){
+
+        if (\Yii::$app->request->isPost) {
+            (new SuspectsDownload())->getDocument(\Yii::$app->request->post());
+        }
+
         $protocols = Protocol::find()->where(['deal_id' => $id, 'roleInThis' => 'подозреваемый'])->asArray()->all();
 
         return $this->render('suspects',[
