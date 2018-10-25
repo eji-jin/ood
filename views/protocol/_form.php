@@ -25,15 +25,21 @@ use yii\jui\InputWidget;
                     'number'
             ),
             [
-                'options' => [
+                'options' => isset($deal_id) ? [
                     $deal_id => ['Selected' => 'selected']
-                ],
+                ] : [],
                 'prompt' => 'Выберите дело'
             ]
     ) ?>
 
     <?= $form->field($model, 'timeStart')->textInput() ?>
-    <?= $form->field($model, 'roleInThis')->textInput() ?>
+    <?= $form->field($model, 'roleInThis')->dropDownList(
+            [
+                'подозреваемый' => 'подозреваемый',
+                'потерпевший' => 'подозреваемый',
+                'свидетель' => 'свидетель'
+            ]
+    ) ?>
     <?= $form->field($model, 'createdate')->textInput() ?>
 
     <?= $form->field($model, 'city')->textInput() ?>
