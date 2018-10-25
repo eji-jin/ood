@@ -34,6 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            [
+                'class' => 'yii\grid\DataColumn',
+                'attribute' => 'deal_id',
+                'content' => function ($model, $key, $index, $column) {
+                    return \app\models\Deal::findOne($model->deal_id)['number'];
+                }
+            ],
             'deal_id',
             'roleInThis',
             'suspect',
