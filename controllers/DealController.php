@@ -2,9 +2,12 @@
 
 namespace app\controllers;
 
+use app\models\Protocol;
 use Yii;
 use app\models\Deal;
 use app\models\DealSearch;
+use yii\base\DynamicModel;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -133,5 +136,13 @@ class DealController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionSuspects($id){
+        $protocols = Protocol::find()->where(['deal_id' => $id, 'roleInThis' => 'подозреваемый'])->asArray()->all();
+
+        return $this->render('suspects',[
+            'protocols' => $protocols
+        ]);
     }
 }
