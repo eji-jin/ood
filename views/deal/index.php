@@ -31,8 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'number',
-            'position',
-            'rank',
             'name',
             'officer',
             [
@@ -43,9 +41,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'Протоколы',
                                 Url::toRoute(['protocol/index','ProtocolSearch[deal_id]' => $model['id']]),
                                 [
-                                    'class' => 'btn btn-success',
+                                    'class' => 'btn btn-primary btn-xs',
                                     'data-pjax' => 0
                                 ]
+                        ) . ' ' .
+                        Html::a(
+                            'Справка',
+                            Url::toRoute(['deal/suspects', 'id' => $model['id']]),
+                            [
+                                'class' => 'btn btn-primary btn-xs',
+                                'data-pjax' => 0
+                            ]
                         );
                     },
                 ],
