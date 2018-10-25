@@ -19,6 +19,7 @@ class m181018_083849_create_protocol_table extends Migration
 
             'id' => $this->primaryKey(),
             'deal_id' => $this->integer()->notNull(),
+            'number' => $this->text(),
             'timeStart' => $this->text()->comment('Время начала допроса'),
             'timeStop' => $this->text()->comment('Время конца допроса'),
             'roleInThis' => $this->text()->comment('Роль допрашиваемого'),

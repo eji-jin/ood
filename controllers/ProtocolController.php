@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Protocol;
 use app\models\ProtocolSearch;
+use app\models\ProtocolDownload;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -124,4 +125,10 @@ class ProtocolController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-}
+
+    public function actionDownload($id)
+    {
+        (new ProtocolDownload())->getDocument($id);
+//        $this->goBack();
+    }
+    }
