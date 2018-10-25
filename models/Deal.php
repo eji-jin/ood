@@ -47,7 +47,7 @@ class Deal extends \yii\db\ActiveRecord
             'position' => 'Должность',
             'rank' => 'Звание',
             'name' => 'ФИО',
-            'officer' => 'Полная должность',
+            'officer' => 'Подразделение',
 
         ];
     }

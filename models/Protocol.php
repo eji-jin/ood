@@ -78,6 +78,6 @@ class Protocol extends \yii\db\ActiveRecord
      */
     public function getDeal()
     {
-        return $this->hasOne(Deal::className(), ['id' => 'deal_id']);
+        return $this->hasOne(Deal::className(), ['number' => 'deal_id']);
     }
 }

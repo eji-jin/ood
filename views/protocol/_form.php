@@ -3,6 +3,9 @@
 use app\models\Deal;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\jui\Widget;
+use yii\jui\DatePicker;
+use yii\jui\InputWidget;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Protocol */
@@ -30,8 +33,8 @@ use yii\widgets\ActiveForm;
     ) ?>
     <?= $form->field($model, 'timeStart')->textInput() ?>
     <?= $form->field($model, 'roleInThis')->textInput() ?>
-
     <?= $form->field($model, 'createdate')->textInput() ?>
+
     <?= $form->field($model, 'city')->textInput() ?>
     <?= $form->field($model, 'room')->textInput() ?>
     <?= $form->field($model, 'suspect')->textInput() ?>
