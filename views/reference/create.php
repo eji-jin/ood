@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Reference */
 
-$this->title = 'Create Reference';
-$this->params['breadcrumbs'][] = ['label' => 'References', 'url' => ['index']];
+$this->title = 'Создать пункт справки';
+$this->params['breadcrumbs'][] = ['label' => 'Пункты справки', 'url' => ['index', 'RererenceSearch[deal_id]' => $model['id']?: '']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reference-create">

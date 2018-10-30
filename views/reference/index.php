@@ -33,6 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'id',
 //            'deal_id',
 //            'number:ntext',
+            [
+                'class' => yii\grid\DataColumn::className(),
+                'content' => function($model) {
+                    $protocol = \app\models\Protocol::findOne($model->protocol_id);
+                    return $protocol->suspect;
+                },
+                'label' => 'ФИО'
+            ],
             'evidence:ntext',
             'claim:ntext',
             'securofclaim:ntext',
