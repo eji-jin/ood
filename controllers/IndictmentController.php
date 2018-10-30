@@ -2,10 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\IndictmentForm;
+use app\models\Protocol;
 use Yii;
 use app\models\Indictment;
 use app\models\IndictmentSearch;
 use app\models\IndictmentDownload;
+use yii\db\Query;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -135,9 +139,29 @@ class IndictmentController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-     public function actionDownload($id)
+
+    public function actionForm($deal_id)
     {
-        (new IndictmentDownload())->getDocument($id);
-//        $this->goBack();
+
+
+        if (\Yii::$app->request->isPost) {
+            (new IndictmentForm())->save(\Yii::$app->request->post());
+        }
+
+        $model = Indictment::findOne(['deal_id' => $deal_id]);
+
+        $suspects = Protocol::findAll(['roleInThis' => 'подозреваемый']);
+        $notSuspects = Protocol::find()->where(['!=', 'roleInThis', 'подозреваемый'])->all();
+        $meta = (new Query())->select(['protocol_id', 'value'])->from('indictment_protocol')->where(['indictment_id' => $model->id])->all();
+        $meta = ArrayHelper::map($meta, 'protocol_id', 'value');
+
+
+        return $this->render('form', [
+            'deal_id' => $deal_id,
+            'model' => $model,
+            'suspects' => $suspects,
+            'notSuspects' => $notSuspects,
+            'meta' => $meta
+        ]);
     }
 }
