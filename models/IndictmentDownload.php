@@ -64,6 +64,13 @@ class IndictmentDownload
         // это потерпевшие и свидетели
         $notSuspects = Protocol::find()->where(['!=', 'roleInThis', 'подозреваемый'])->andWhere(['deal_id' => $id])->all();
 
+        foreach ($notSuspects as $notSuspect) {
+
+            $section->addText($notSuspect->suspect);
+            $section->addText($notSuspect->indications);
+            $section->addText(' ');
+        }
+
         $filename = \Yii::getAlias('@app/runtime/files/') . $id . '.docx';
         try {
             $w->save($filename, 'Word2007');
