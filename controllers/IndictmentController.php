@@ -171,6 +171,11 @@ class IndictmentController extends Controller
     }
 
     public function actionDownload($deal_id) {
+
+        if (\Yii::$app->request->isPost) {
+            (new IndictmentForm())->save(\Yii::$app->request->post());
+        }
+
         (new IndictmentDownload())->getDocument($deal_id);
     }
 }

@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <form method="post" class="form-horizontal" >
+    <form id="indictment-form" method="post" class="form-horizontal" >
         <input id="form-token" type="hidden" name="<?=Yii::$app->request->csrfParam?>" value="<?=Yii::$app->request->csrfToken?>"/>
         <?php foreach ($suspects as $index => $suspect): ?>
             <p class="lead"><?= $suspect->suspect; ?></p>
@@ -122,12 +122,16 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="form-group">
             <div class="col-lg-9 col-lg-offset-3">
-                <button type="submit" class="btn btn-success">
-                    Сохранить
-                </button>
-                <?= Html::a('Скачать',
-                    \yii\helpers\Url::toRoute(['indictment/download', 'deal_id' => $deal_id]),
-                    ['class' => 'btn btn-primary']) ?>
+                <?= Html::submitButton('Сохранить',
+                    [
+                        'class' => 'btn btn-success',
+                        'onClick' => "document.getElementById('indictment-form').action = '/indictment/form?deal_id=" . $deal_id . "';"
+                    ]) ?>
+                <?= Html::submitButton('Сохранить и скачать',
+                [
+                            'class' => 'btn btn-primary',
+                            'onClick' => "document.getElementById('indictment-form').action = '/indictment/download?deal_id=" . $deal_id . "';"
+                ]) ?>
             </div>
         </div>
     </form>

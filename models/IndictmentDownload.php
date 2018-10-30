@@ -53,7 +53,13 @@ class IndictmentDownload
         //        'value' -> 'обстоятельства обвинения'
         //    ]
         // ]
-        (new Query())->select(['protocol_id', 'value'])->from('indictment_protocol')->where(['indictment_id' => $indectment->id])->all();
+        $suspects = (new Query())->select(['protocol_id', 'value'])->from('indictment_protocol')->where(['indictment_id' => $indectment->id])->all();
+
+        foreach ($suspects as $suspect) {
+            $section->addText(Protocol::findOne($suspect['protocol_id'])->suspect);
+            $section->addText($suspect['value']);
+            $section->addText(' ');
+        }
 
         // это потерпевшие и свидетели
         $notSuspects = Protocol::find()->where(['!=', 'roleInThis', 'подозреваемый'])->andWhere(['deal_id' => $id])->all();
