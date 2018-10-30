@@ -22,22 +22,31 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
+        'summary' => '<p>Показано <b>{begin}-{end}</b> из <b>{totalCount}</b> элементов.</p>',
+        'options' => [
+            'style' => 'word-wrap: break-word;'
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'deal_id',
-            'number:ntext',
+//            'id',
+//            'deal_id',
+//            'number:ntext',
             'evidence:ntext',
             'claim:ntext',
-            //'securofclaim:ntext',
-            //'guarantee:ntext',
-            //'cost:ntext',
-            //'lawyer:ntext',
-            //'dateofreview:ntext',
+            'securofclaim:ntext',
+            'guarantee:ntext',
+            'cost:ntext',
+            'lawyer:ntext',
+            'dateofreview:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'nullDisplay' => '-',
+            'dateFormat' => 'dd.MM.yyyy'
+        ]
     ]); ?>
 </div>
