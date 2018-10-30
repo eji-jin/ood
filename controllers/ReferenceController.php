@@ -5,11 +5,14 @@ namespace app\controllers;
 use Yii;
 use app\models\Reference;
 use app\models\ReferenceSearch;
+use app\models\SuspectsDownload;
 use app\models\ReferenceDownload;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Deal;
+use app\models\Protocol;
 
 /**
  * ReferenceController implements the CRUD actions for Reference model.
@@ -140,5 +143,20 @@ class ReferenceController extends Controller
         (new ReferenceDownload())->getDocument($id);
 //        $this->goBack();
     }
-    
+
+
+
+    public function actionSuspects($id){
+
+        if (\Yii::$app->request->isPost) {
+            (new SuspectsDownload())->getDocument(\Yii::$app->request->post());
+        }
+        $deals = Deal::find()->where(['id' => $id])->asArray()->one();
+        $protocols = Protocol::find()->where(['deal_id' => $id, 'roleInThis' => 'подозреваемый'])->asArray()->all();
+
+        return $this->render('suspects',[
+            'protocols' => $protocols,
+            'deals'=>$deals
+        ]);
+    }
 }

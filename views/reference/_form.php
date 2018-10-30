@@ -16,6 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'number')->textarea(['rows' => 6]) ?>
 
+
     <?= $form->field($model, 'evidence')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'claim')->textarea(['rows' => 6]) ?>
