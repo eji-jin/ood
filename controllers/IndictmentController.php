@@ -169,4 +169,8 @@ class IndictmentController extends Controller
             'meta' => $meta
         ]);
     }
+
+    public function actionDownload($deal_id) {
+        (new IndictmentDownload())->getDocument($deal_id);
+    }
 }

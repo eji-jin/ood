@@ -125,6 +125,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <button type="submit" class="btn btn-success">
                     Сохранить
                 </button>
+                <?= Html::a('Скачать',
+                    \yii\helpers\Url::toRoute(['indictment/download', 'deal_id' => $deal_id]),
+                    ['class' => 'btn btn-primary']) ?>
             </div>
         </div>
     </form>
