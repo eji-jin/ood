@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ReferenceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'References';
+$this->title = 'Справка';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reference-index">
@@ -16,7 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Reference', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать пункт справки', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Скачать', '#', ['class' => 'btn btn-success', 'onclick' => 'alert("Сделать формирование документа!");']) ?>
     </p>
 
     <?= GridView::widget([

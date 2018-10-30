@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Reference;
 use Yii;
 use app\models\Protocol;
 use app\models\ProtocolSearch;
@@ -79,6 +80,14 @@ class ProtocolController extends Controller
         $model = new Protocol();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            // создать пункт справки если роль в протоколе - подозреваемый
+            if ($model->roleInThis === 'подозреваемый') {
+                $reference = new Reference();
+                $reference->deal_id = $model->deal_id;
+                $reference->protocol_id = $model->id;
+                $reference->save();
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ) . ' ' .
                         Html::a(
                             'Справка',
-                            Url::toRoute(['deal/suspects', 'id' => $model['id']]),
+                            Url::toRoute(['reference/index', 'ProtocolSearch[deal_id]' => $model['id']]),
                             [
                                 'class' => 'btn btn-primary btn-xs',
                                 'data-pjax' => 0

@@ -6,6 +6,7 @@ use Yii;
 use app\models\Reference;
 use app\models\ReferenceSearch;
 use app\models\ReferenceDownload;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

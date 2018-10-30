@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property int $deal_id
+ * @property int $protocol_id
  * @property string $number
  * @property string $evidence Вещественные доказательства
  * @property string $claim Заявлялся ли гражд. иск
@@ -36,10 +37,11 @@ class Reference extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['deal_id'], 'required'],
-            [['deal_id'], 'integer'],
+            [['deal_id', 'protocol_id'], 'required'],
+            [['deal_id', 'protocol_id'], 'integer'],
             [['number', 'evidence', 'claim', 'securofclaim', 'guarantee', 'cost', 'lawyer', 'dateofreview'], 'string'],
             [['deal_id'], 'exist', 'skipOnError' => true, 'targetClass' => Deal::className(), 'targetAttribute' => ['deal_id' => 'id']],
+            [['protocol_id'], 'exist', 'skipOnError' => true, 'targetClass' => Protocol::className(), 'targetAttribute' => ['protocol_id' => 'id']],
         ];
     }
 
@@ -51,6 +53,7 @@ class Reference extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'deal_id' => 'Deal ID',
+            'protocol_id' => 'Protocol ID',
             'number' => 'Номер дела',
             'evidence' => 'Вещественные доказательства',
             'claim' => 'Заявлялся ли гражданский иск',
@@ -68,5 +71,13 @@ class Reference extends \yii\db\ActiveRecord
     public function getDeal()
     {
         return $this->hasOne(Deal::className(), ['id' => 'deal_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProtocol()
+    {
+        return $this->hasOne(Protocol::className(), ['id' => 'protocol_id']);
     }
 }
