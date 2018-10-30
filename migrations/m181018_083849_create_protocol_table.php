@@ -27,7 +27,6 @@ class m181018_083849_create_protocol_table extends Migration
             'city' => $this->text() ->comment('Населенный пункт'),
             'room' => $this->text()->comment('№ кабинета'),
             'suspect' => $this->text()->comment('Ф.И.О. допрашиваемого'),
-
             'birthdate' => $this->text()->comment('Дата рождения'),
             'birthplace' => $this->text()->comment('Место рождения'),
             'residence' => $this->text()->comment('Проживает'),
@@ -35,7 +34,6 @@ class m181018_083849_create_protocol_table extends Migration
             'educat' => $this->text()->comment('Образование'),
             'famstat' => $this->text()->comment('Сем. положение'),
             'workplace' => $this->text()->comment('Место работы, учебы'),
-
             'duty' => $this->text()->comment('Воинская обязанность'),
             'crime' => $this->text()->comment('Судимости'),
             'pasport' => $this->text()->comment('Док-т удост. личн.'),
@@ -44,7 +42,18 @@ class m181018_083849_create_protocol_table extends Migration
             'hardware' => $this->text()->comment('Тех средства'),
             'incriminate' => $this->text()->comment('В чем подозревается'),
             'indications' => $this->text()->comment('Показания допрашиваемого'),
-
+            'dopstat' => $this->text()->comment('Иные заявления'),
+            'dopstattext' => $this->text()->comment('Текст заявлений'),
+            //Справка
+            'evidence' => $this->text()->comment('Вещественные доказательства'),
+            'claim' => $this->text()->comment('Заявлялся ли гражд. иск'),
+            'securofclaim' => $this->text()->comment('Меры обесп. гражд. иска'),
+            'guarantee' => $this->text()->comment('Обеспеч. прав иждевенцев'),
+            'cost' => $this->text()->comment('Издержки'),
+            'lawyer' => $this->text()->comment('Защитник'),
+            'dateofreview' => $this->text()->comment('Дата ознакомления'),
+            'sent' => $this->text()->comment('Направлено'),
+'mp' => $this->text()->comment('Меры пресечения'),
         ]);
 
         // creates index for column `deal_id`

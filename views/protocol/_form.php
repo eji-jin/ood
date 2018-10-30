@@ -13,10 +13,12 @@ use yii\jui\InputWidget;
 
 ?>
 
-<div class="protocol-form">
+<p class="protocol-form">
 
 
     <?php $form = ActiveForm::begin(); ?>
+
+
 
     <?= $form->field($model, 'deal_id')->dropDownList(
             \yii\helpers\ArrayHelper::map(
@@ -29,21 +31,24 @@ use yii\jui\InputWidget;
                     $deal_id => ['Selected' => 'selected']
                 ] : [],
                 'prompt' => 'Выберите дело'
-            ]
-    ) ?>
-
+            ]) ?>
     <?= $form->field($model, 'timeStart')->textInput() ?>
     <?= $form->field($model, 'roleInThis')->dropDownList(
             [
                 'подозреваемый' => 'подозреваемый',
-                'потерпевший' => 'подозреваемый',
+                'потерпевший' => 'потерпевший',
                 'свидетель' => 'свидетель'
             ]
     ) ?>
+
     <?= $form->field($model, 'createdate')->textInput() ?>
 
     <?= $form->field($model, 'city')->textInput() ?>
+
+
     <?= $form->field($model, 'room')->textInput() ?>
+
+
     <?= $form->field($model, 'suspect')->textInput() ?>
     <?= $form->field($model, 'birthdate')->textInput() ?>
     <?= $form->field($model, 'birthplace')->textarea(['rows' => 1]) ?>
@@ -60,12 +65,40 @@ use yii\jui\InputWidget;
     <?= $form->field($model, 'hardware')->textInput() ?>
     <?= $form->field($model, 'incriminate')->textarea(['rows' => 2]) ?>
     <?= $form->field($model, 'indications')->textarea(['rows' => 2]) ?>
+    <?= $form->field($model, 'dopstat')->textInput() ?>
+    <?= $form->field($model, 'dopstattext')->textInput() ?>
     <?= $form->field($model, 'timeStop')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
 
     </div>
+
+
+<?php ob_start(); ?>
+<?= $form->field($model, 'mp')->textInput() ?>
+<?= $form->field($model, 'evidence')->textarea(['rows' => 2]) ?>
+<?= $form->field($model, 'claim')->textInput() ?>
+<?= $form->field($model, 'securofclaim')->textInput() ?>
+<?= $form->field($model, 'guarantee')->textInput() ?>
+<?= $form->field($model, 'cost')->textInput() ?>
+<?= $form->field($model, 'lawyer')->textInput() ?>
+<?= $form->field($model, 'dateofreview')->textInput() ?>
+<?php
+echo $form->field($model, 'sent')->textInput() ?>
+<div class="form-group">
+    <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+
+</div>
+<?php $content = ob_get_clean(); ?>
+
+<?php
+echo \yii\bootstrap\Collapse::widget([
+        'items'=>[
+                ['label'=>'СПРАВКА',
+                'content'=>$content]
+        ]
+]);?>
 
     <?php ActiveForm::end(); ?>
 

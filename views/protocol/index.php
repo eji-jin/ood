@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProtocolSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -23,6 +24,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['create', 'deal_id' => \Yii::$app->request->get('ProtocolSearch')['deal_id']],
                 ['class' => 'btn btn-success']
         ) ?>
+
+        <?= Html::a(
+            'Данные для формирования обвинительного постановления',
+            Url::toRoute(['indictment/index']),
+            [
+                'class' => 'btn btn-success',
+                'data-pjax' => 0
+            ]
+        ); ?>
+
+
     </p>
 
     <?= GridView::widget([
@@ -36,12 +48,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             [
                 'class' => 'yii\grid\DataColumn',
+                
                 'attribute' => 'deal_id',
                 'content' => function ($model, $key, $index, $column) {
                     return \app\models\Deal::findOne($model->deal_id)['number'];
                 }
+                
+                
             ],
-            'deal_id',
             'roleInThis',
             'suspect',
 

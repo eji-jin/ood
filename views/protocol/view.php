@@ -15,9 +15,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Скачать', ['download', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        
+        
+        <?= Html::a('Справка', ['download1', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
@@ -25,12 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+    
+    
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'deal_id',
 
             'timeStart',
             'timeStop',

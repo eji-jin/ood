@@ -6,6 +6,7 @@ use Yii;
 use app\models\Protocol;
 use app\models\ProtocolSearch;
 use app\models\ProtocolDownload;
+use app\models\Protocol1Download;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -141,4 +142,10 @@ class ProtocolController extends Controller
         (new ProtocolDownload())->getDocument($id);
 //        $this->goBack();
     }
+    public function actionDownload1($id)
+    {
+        (new Protocol1Download())->getDocument($id);
+//        $this->goBack();
     }
+
+}

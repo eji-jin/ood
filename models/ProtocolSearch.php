@@ -19,7 +19,7 @@ class ProtocolSearch extends Protocol
     {
         return [
             [['id', 'deal_id'], 'integer'],
-            [['birthplace', 'residence', 'crime', 'pasport', 'other', 'indications'], 'string'],
+            [['evidence', 'claim', 'securofclaim', 'guarantee', 'cost', 'lawyer', 'dateofreview', 'sent', 'birthplace', 'residence', 'crime', 'pasport', 'other', 'indications'], 'string'],
             [['timeStart', 'timeStop', 'roleInThis', 'createdate', 'city', 'room', 'suspect', 'birthdate', 'nat', 'educat', 'famstat', 'workplace', 'duty', 'otherPerson', 'hardware', 'incriminate'], 'string'],
 
         ];

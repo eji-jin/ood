@@ -41,7 +41,7 @@ AppAsset::register($this);
             ['label' => 'Главная', 'url' => ['/site/index']],
             Yii::$app->user->can('editUsers') ? ['label' => 'Пользователи', 'url' => ['/user/index']] : '',
             Yii::$app->user->can('useForms') ? ['label' => 'Дела', 'url' => ['deal/index']] : '',
-            Yii::$app->user->can('useForms') ? ['label' => 'Протоколы', 'url' => ['protocol/index']] : '',
+            //Yii::$app->user->can('useForms') ? ['label' => 'Протоколы', 'url' => ['protocol/index']] : '',
             Yii::$app->user->isGuest ? (
                 ['label' => 'Вход', 'url' => ['/site/login']]
             ) : (

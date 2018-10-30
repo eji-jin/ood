@@ -31,7 +31,16 @@ use Yii;
  * @property string $pasport
  * @property string $other
  * @property string $indications
- *
+ 
+ 
+  * @property string $evidence
+ * @property string $claim
+ * @property string $securofclaim
+ * @property string $guarantee
+ * @property string $cost
+ * @property string $lawyer
+ * @property string $dateofreview
+ 
  * @property Deal $deal
  */
 class Protocol extends \yii\db\ActiveRecord
@@ -52,9 +61,11 @@ class Protocol extends \yii\db\ActiveRecord
         return [
             [['deal_id'], 'required'],
             [['deal_id'], 'integer'],
-            [['birthplace', 'residence', 'crime', 'pasport', 'other', 'indications'], 'string'],
+            [['dopstat', 'dopstattext', 'mp', 'evidence', 'claim', 'securofclaim', 'guarantee', 'cost', 'lawyer', 'dateofreview', 'sent', 'birthplace', 'residence', 'crime', 'pasport', 'other', 'indications'], 'string'],
             [['timeStart', 'timeStop', 'roleInThis', 'createdate', 'city', 'room', 'suspect', 'birthdate', 'nat', 'educat', 'famstat', 'workplace', 'duty', 'otherPerson', 'hardware', 'incriminate'], 'string'],
 
+              
+            
             [['deal_id'], 'exist', 'skipOnError' => true, 'targetClass' => Deal::className(), 'targetAttribute' => ['deal_id' => 'id']],
         ];
     }
@@ -89,7 +100,19 @@ class Protocol extends \yii\db\ActiveRecord
             'pasport' => 'Док-т удост. личн.',
             'other' => 'Др. данные',
             'indications' => 'Показания',
+            'dopstat' =>'Поступившие заявления',
+            'dopstattext'=>'Содержание заявлений',
 
+            //Справка
+            'evidence' => 'Вещественные доказательства',
+            'claim' => 'гражд иск',
+            'securofclaim'=> 'обесп гражд иска', 
+            'guarantee' => 'Гарантии иждевенцев',
+            'cost' => 'Издержки',
+            'lawyer' => 'Защитник',
+            'dateofreview'=> 'Дата ознакомления',
+            'sent' => 'Куда и когда нправлено',
+            'mp' => 'Мера пресечения',
         ];
     }
 

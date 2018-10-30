@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c8abe31722f249befe1f4414b06c0c38",
+    "content-hash": "b9828860d68f5d09f79438455a844181",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -468,6 +468,45 @@
                 "mailer"
             ],
             "time": "2018-07-31T09:26:32+00:00"
+        },
+        {
+            "name": "yadelivery/name-case-lib",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/YaDelivery/NameCaseLib.git",
+                "reference": "d6aebf40f092a4354b92e0b7fd84bfc6445f7190"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/YaDelivery/NameCaseLib/zipball/d6aebf40f092a4354b92e0b7fd84bfc6445f7190",
+                "reference": "d6aebf40f092a4354b92e0b7fd84bfc6445f7190",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NCL\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Library for inflecting Russian and Ukrainian Names. Fork of http://namecaselib.com/",
+            "homepage": "https://github.com/coyl/NameCaseLib",
+            "keywords": [
+                "Lastname",
+                "NameCaseLib",
+                "inflection",
+                "name",
+                "russian",
+                "ukrainian"
+            ],
+            "time": "2015-03-19T13:08:25+00:00"
         },
         {
             "name": "yiisoft/yii2",

@@ -32,6 +32,7 @@ class Deal extends \yii\db\ActiveRecord
     {
         return [
             [['number'], 'integer'],
+            [['number', 'name'], 'required'],
             [['position', 'rank', 'name', 'officer'], 'string'],
 
         ];
