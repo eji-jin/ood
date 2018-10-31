@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+//            'id',
             'number',
             'name',
             'officer',
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ) . ' ' .
                         Html::a(
                             'Справка',
-                            Url::toRoute(['reference/index', 'ProtocolSearch[deal_id]' => $model['id']]),
+                            Url::toRoute(['reference/index', 'ReferenceSearch[deal_id]' => $model['id']]),
                             [
                                 'class' => 'btn btn-primary btn-xs',
                                 'data-pjax' => 0

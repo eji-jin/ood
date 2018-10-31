@@ -14,7 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="reference-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -25,24 +24,37 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'summary' => '<p>Показано <b>{begin}-{end}</b> из <b>{totalCount}</b> элементов.</p>',
+        'options' => [
+            'style' => 'word-wrap: break-word;'
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'deal_id',
-            'number:ntext',
-            'evidence:ntext',
-            'claim:ntext',
             [
                 'class' => 'yii\grid\DataColumn',
-
                 'attribute' => 'deal_id',
+                'label' => 'Номер дела',
                 'content' => function ($model, $key, $index, $column) {
                     return \app\models\Deal::findOne($model->deal_id)['number'];
                 }
 
 
             ],
+            [
+                'class' => yii\grid\DataColumn::className(),
+                'content' => function($model) {
+                    $protocol = \app\models\Protocol::findOne($model->protocol_id);
+                    return $protocol->suspect;
+                },
+                'label' => 'ФИО'
+            ],
+            'evidence:ntext',
+            'claim:ntext',
+            'securofclaim:ntext',
+            'guarantee:ntext',
+            'cost:ntext',
+            'lawyer:ntext',
+            'dateofreview:ntext',
             //'securofclaim:ntext',
             //'guarantee:ntext',
             //'cost:ntext',
@@ -51,5 +63,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'nullDisplay' => '-',
+            'dateFormat' => 'dd.MM.yyyy'
+        ]
     ]); ?>
 </div>
