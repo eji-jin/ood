@@ -160,6 +160,7 @@ class IndictmentController extends Controller
             $model = new Indictment();
         }
 
+
         return $this->render('form', [
             'deal_id' => $deal_id,
             'model' => $model,
@@ -168,7 +169,13 @@ class IndictmentController extends Controller
             'meta' => $meta
         ]);
     }
+
     public function actionDownload($deal_id) {
+
+        if (\Yii::$app->request->isPost) {
+            (new IndictmentForm())->save(\Yii::$app->request->post());
+        }
+
         (new IndictmentDownload())->getDocument($deal_id);
     }
 }

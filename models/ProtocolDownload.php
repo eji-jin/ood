@@ -73,8 +73,6 @@ class ProtocolDownload
         
         $cellColSpan1 = array('valign' => 'center');
         $cellColSpan2 = array('valign' => 'center');
-
-
         
         $w->addTableStyle('Colspan Rowspan', $styleTable);
         $table = $section->addTable('Colspan Rowspan');
@@ -86,17 +84,13 @@ class ProtocolDownload
         $section->addText('Допрос начат в: '.$values['timeStart'],null, array('align' =>'both', 'spaceAfter' =>0));
         $section->addText('Допрос окончен в: '.$values['timeStop'],null, array('align' =>'both', 'spaceAfter' =>0));
 
-
-
-
-
-
         $section->addText(\app\models\Deal::findOne($values['deal_id'])['position'].' '. \app\models\Deal::findOne($values['deal_id'])['officer'] .' '. \app\models\Deal::findOne($values['deal_id'])['rank']. ' ' . \app\models\Deal::findOne($values['deal_id'])['name'] . ', в помещении ' . $values['room'] . ' в соответствии с частю второй ст. 46, ст. 180 и 190 УПК РФ допросил по уголовному делу №' . \app\models\Deal::findOne($values['deal_id'])['number'] . ' в качестве ' . $array . ':',null, array('align' =>'both', 'spaceAfter' =>0));
         
          $section->addText('1. Фамилия, Имя, Отчество: ' . $values['suspect'],null, array('align' =>'both', 'spaceAfter' =>0));
          $section->addText('2. Дата рождения: ' . $values['birthdate'],null, array('align' =>'both', 'spaceAfter' =>0));
          $section->addText('3. Место жительсва и (или) регистрации: ' . $values['residence'],null, array('align' =>'both', 'spaceAfter' =>0));
          $section->addText('4. Место рождения: ' . $values['birthplace'],null, array('align' =>'both', 'spaceAfter' =>0));
+         
          $section->addText('5. Гражданство: ' . $values['nat'],null, array('align' =>'both', 'spaceAfter' =>0));
          $section->addText('6. Образование: ' . $values['educat'],null, array('align' =>'both', 'spaceAfter' =>0));
          $section->addText('7. Семейное положение, состав семьи: ' . $values['famstat'],null, array('align' =>'both', 'spaceAfter' =>0));
