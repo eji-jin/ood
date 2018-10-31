@@ -23,17 +23,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-//        'filterModel' => $searchModel,
+        'filterModel' => $searchModel,
         'summary' => '<p>Показано <b>{begin}-{end}</b> из <b>{totalCount}</b> элементов.</p>',
         'options' => [
             'style' => 'word-wrap: break-word;'
         ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => 'yii\grid\DataColumn',
+                'attribute' => 'deal_id',
+                'label' => 'Номер дела',
+                'content' => function ($model, $key, $index, $column) {
+                    return \app\models\Deal::findOne($model->deal_id)['number'];
+                }
 
-//            'id',
-//            'deal_id',
-//            'number:ntext',
+
+            ],
             [
                 'class' => yii\grid\DataColumn::className(),
                 'content' => function($model) {
@@ -49,16 +55,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'cost:ntext',
             'lawyer:ntext',
             'dateofreview:ntext',
-            [
-                'class' => 'yii\grid\DataColumn',
-
-                'attribute' => 'deal_id',
-                'content' => function ($model, $key, $index, $column) {
-                    return \app\models\Deal::findOne($model->deal_id)['number'];
-                }
-
-
-            ],
             //'securofclaim:ntext',
             //'guarantee:ntext',
             //'cost:ntext',
