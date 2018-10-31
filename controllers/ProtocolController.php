@@ -73,9 +73,10 @@ class ProtocolController extends Controller
     /**
      * Creates a new Protocol model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param null $deal_id
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($deal_id = null)
     {
         $model = new Protocol();
 
@@ -88,11 +89,12 @@ class ProtocolController extends Controller
                 $reference->save();
             }
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'deal_id' => $deal_id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'deal_id' => $deal_id
         ]);
     }
 
