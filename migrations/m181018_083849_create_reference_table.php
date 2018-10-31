@@ -28,7 +28,7 @@ class m181018_083849_create_reference_table extends Migration
             'cost' => $this->text()->comment('Издержки'),
             'lawyer' => $this->text()->comment('Защитник'),
             'dateofreview' => $this->text()->comment('Дата ознакомления'),
-            
+            'circumstances' => $this->text()->comment('Обстоятельства преступления'),
         ]);
 
         // creates index for column `deal_id`

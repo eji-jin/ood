@@ -38,36 +38,25 @@ class IndictmentForm extends Model
         // TODO: обновлять данные если уже существует
 
         // save suspects
-        foreach ($postValues['meta'] as $suspect) {
-//            try {
-//                (new Query())->createCommand()->insert('indictment_protocol', [
-//                    'indictment_id' => $indictment->id,
-//                    'protocol_id' => $suspect['protocol_id'],
-//                    'value' => $suspect['value'],
-//                ])->execute();
-//            } catch (IntegrityException $e) {
-//                (new Query())->createCommand()->update('indictment_protocol', [
-//                    'value' => $suspect['value'],
-//                ],[
-//                    'indictment_id' => $indictment->id,
-//                    'protocol_id' => $suspect['protocol_id'],
-//                ])->execute();
-//            }
-            \Yii::$app->db->createCommand()->upsert('indictment_protocol', [
-                'indictment_id' => $indictment->id,
-                'protocol_id' => $suspect['protocol_id'],
-                'value' => $suspect['value'],
-            ], [
-                'value' => $suspect['value'],
-            ])->execute();
+        if (isset($postValues['meta'])) {
+            foreach ($postValues['meta'] as $suspect) {
+                \Yii::$app->db->createCommand()->upsert('indictment_protocol', [
+                    'indictment_id' => $indictment->id,
+                    'protocol_id' => $suspect['protocol_id'],
+                    'value' => $suspect['value'],
+                ], [
+                    'value' => $suspect['value'],
+                ])->execute();
 
         }
 
         // save notsuspects
-        foreach ($postValues['notsuspects'] as $notsuspect) {
-            $protocol = Protocol::findOne($notsuspect['protocol_id']);
-            $protocol->indications = $notsuspect['value'];
-            $protocol->save();
+            if (isset($postValues['notsuspects'])) {
+                foreach ($postValues['notsuspects'] as $notsuspect) {
+                    $protocol = Protocol::findOne($notsuspect['protocol_id']);
+                    $protocol->indications = $notsuspect['value'];
+                    $protocol->save();
+                }
         }
     }
 }

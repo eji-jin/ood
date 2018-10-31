@@ -150,11 +150,15 @@ class IndictmentController extends Controller
 
         $model = Indictment::findOne(['deal_id' => $deal_id]);
 
-        $suspects = Protocol::findAll(['roleInThis' => 'подозреваемый']);
-        $notSuspects = Protocol::find()->where(['!=', 'roleInThis', 'подозреваемый'])->all();
-        $meta = (new Query())->select(['protocol_id', 'value'])->from('indictment_protocol')->where(['indictment_id' => $model->id])->all();
-        $meta = ArrayHelper::map($meta, 'protocol_id', 'value');
-
+        $suspects = Protocol::findAll(['roleInThis' => 'подозреваемый', 'deal_id' => $deal_id]);
+        $notSuspects = Protocol::find()->where(['!=', 'roleInThis', 'подозреваемый'])->andWhere(['deal_id' => $deal_id])->all();
+        if ($model) {
+            $meta = (new Query())->select(['protocol_id', 'value'])->from('indictment_protocol')->where(['indictment_id' => $model->id])->all();
+            $meta = ArrayHelper::map($meta, 'protocol_id', 'value');
+        } else {
+            $meta = [];
+            $model = new Indictment();
+        }
 
         return $this->render('form', [
             'deal_id' => $deal_id,
@@ -163,5 +167,8 @@ class IndictmentController extends Controller
             'notSuspects' => $notSuspects,
             'meta' => $meta
         ]);
+    }
+    public function actionDownload($deal_id) {
+        (new IndictmentDownload())->getDocument($deal_id);
     }
 }

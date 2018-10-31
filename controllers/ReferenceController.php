@@ -151,7 +151,7 @@ class ReferenceController extends Controller
         if (\Yii::$app->request->isPost) {
             (new SuspectsDownload())->getDocument(\Yii::$app->request->post());
         }
-        $deals = Deal::find()->where(['id' => $id])->asArray()->one();
+        $deals = Deal::find()->where(['deal_id' => $id])->asArray()->all();
         $protocols = Protocol::find()->where(['deal_id' => $id, 'roleInThis' => 'подозреваемый'])->asArray()->all();
 
         return $this->render('suspects',[
@@ -159,4 +159,5 @@ class ReferenceController extends Controller
             'deals'=>$deals
         ]);
     }
+
 }
