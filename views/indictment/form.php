@@ -135,7 +135,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </form>
-    <form method="post" class="form-horizontal" action="<?= "/indictment/download?deal_id={$deal_id}" ?>">
+    <form method="post" class="form-horizontal" action="<?= \yii\helpers\Url::to(['indictment/download', 'deal_id' => $deal_id])?>">
         <input id="form-token" type="hidden" name="<?=Yii::$app->request->csrfParam?>" value="<?=Yii::$app->request->csrfToken?>"/>
         <div class="form-group">
             <div class="col-lg-9 col-lg-offset-3">
