@@ -125,13 +125,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::submitButton('Сохранить',
                     [
                         'class' => 'btn btn-success',
-                        'onClick' => "document.getElementById('indictment-form').action = '/indictment/form?deal_id=" . $deal_id . "';"
+                        //'onClick' => "document.getElementById('indictment-form').action = '/indictment/form?deal_id=" . $deal_id . "';"
                     ]) ?>
-                <?= Html::submitButton('Сохранить и скачать',
+                <?php Html::submitButton('Сохранить и скачать',
                 [
                             'class' => 'btn btn-primary',
                             'onClick' => "document.getElementById('indictment-form').action = '/indictment/download?deal_id=" . $deal_id . "';"
                 ]) ?>
+            </div>
+        </div>
+    </form>
+    <form method="post" class="form-horizontal" action="<?= "/indictment/download?deal_id={$deal_id}" ?>">
+        <input id="form-token" type="hidden" name="<?=Yii::$app->request->csrfParam?>" value="<?=Yii::$app->request->csrfToken?>"/>
+        <div class="form-group">
+            <div class="col-lg-9 col-lg-offset-3">
+                <?= Html::submitButton('Cкачать',
+                    [
+                        'class' => 'btn btn-primary'
+                    ]) ?>
             </div>
         </div>
     </form>
