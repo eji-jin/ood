@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\widgets\Pjax;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ReferenceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -17,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Создать пункт справки', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Скачать', '#', ['class' => 'btn btn-success', 'onclick' => 'alert("Сделать формирование документа!");']) ?>
+        <?= Html::a('Скачать', ['download', 'id' => \Yii::$app->request->get('ProtocolSearch')['deal_id']], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -48,6 +49,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'cost:ntext',
             'lawyer:ntext',
             'dateofreview:ntext',
+            [
+                'class' => 'yii\grid\DataColumn',
+
+                'attribute' => 'deal_id',
+                'content' => function ($model, $key, $index, $column) {
+                    return \app\models\Deal::findOne($model->deal_id)['number'];
+                }
+
+
+            ],
+            //'securofclaim:ntext',
+            //'guarantee:ntext',
+            //'cost:ntext',
+            //'lawyer:ntext',
+            //'dateofreview:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -25,14 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['class' => 'btn btn-success']
         ) ?>
 
-        <?= Html::a(
-            'Данные для формирования обвинительного постановления',
-            Url::toRoute(['indictment/index']),
-            [
-                'class' => 'btn btn-success',
-                'data-pjax' => 0
-            ]
-        ); ?>
 
 
     </p>

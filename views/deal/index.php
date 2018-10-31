@@ -52,10 +52,19 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'class' => 'btn btn-primary btn-xs',
                                 'data-pjax' => 0
                             ]
-                        );
+                        ) . ' ' .
+                            Html::a(
+                                'Обвинительный акт',
+                                Url::toRoute(['indictment/form', 'deal_id' => $model['id']]),
+                                [
+                                    'class' => 'btn btn-primary btn-xs',
+                                    'data-pjax' => 0
+                                ]
+                            );
                     },
                 ],
-                'template' => '{view} {update} {delete} {viewProtocols}'
+                'template' => '{view} {update} {delete} {viewProtocols}',
+                'headerOptions' => ['style' => 'width:30%'],
             ],
         ],
     ]); ?>
