@@ -17,8 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Создать пункт справки', ['create', 'deal_id' => \Yii::$app->request->get('ReferenceSearch')['deal_id']], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Скачать', ['download', 'id' => \Yii::$app->request->get('ReferenceSearch')['deal_id']], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать пункт справки', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Скачать', ['download', 'id' => \Yii::$app->request->get('ProtocolSearch')['deal_id']], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
