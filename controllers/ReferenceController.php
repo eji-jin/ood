@@ -74,9 +74,10 @@ class ReferenceController extends Controller
     /**
      * Creates a new Reference model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param null $deal_id
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($deal_id = null)
     {
         $model = new Reference();
 
@@ -86,6 +87,7 @@ class ReferenceController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'deal_id' => $deal_id
         ]);
     }
 
