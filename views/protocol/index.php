@@ -8,6 +8,9 @@ use yii\helpers\Url;
 /* @var $searchModel app\models\ProtocolSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+$deal_id = \Yii::$app->request->get('ProtocolSearch')['deal_id'];
+
+
 $this->title = 'Протоколы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -21,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= Html::a(
                 'Создать Протокол',
-                ['create', 'deal_id' => \Yii::$app->request->get('ProtocolSearch')['deal_id']],
+                ['create', 'deal_id' => isset($deal_id) ? $deal_id : ''],
                 ['class' => 'btn btn-success']
         ) ?>
 
@@ -29,30 +32,51 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </p>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-//        'filterModel' => $searchModel,
-        'summary' => 'Показаны {begin} - {end} из {totalCount} элементов',
-        'emptyText' => 'Элементы не найдены',
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    <?php try {
+        echo GridView::widget([
+            'dataProvider' => $dataProvider,
+            //        'filterModel' => $searchModel,
+            'summary' => 'Показаны {begin} - {end} из {totalCount} элементов',
+            'emptyText' => 'Элементы не найдены',
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-//            'id',
-            [
-                'class' => 'yii\grid\DataColumn',
-                
-                'attribute' => 'deal_id',
-                'content' => function ($model, $key, $index, $column) {
-                    return \app\models\Deal::findOne($model->deal_id)['number'];
-                }
-                
-                
+                //            'id',
+                [
+                    'class' => 'yii\grid\DataColumn',
+
+                    'attribute' => 'deal_id',
+                    'content' => function ($model, $key, $index, $column) {
+                        return \app\models\Deal::findOne($model->deal_id)['number'];
+                    }
+
+
+                ],
+                'roleInThis',
+                'suspect',
+
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'urlCreator' => function ($action, $model, $key, $index) use ($deal_id) {
+                        if ($action === 'view') {
+                            $url = Url::to(['protocol/view', 'id' => $model->id, 'deal_id' => $deal_id ?: '']);
+                            return $url;
+                        }
+                        if ($action === 'update') {
+                            $url = Url::to(['protocol/update', 'id' => $model->id, 'deal_id' => $deal_id ?: '']);
+                            return $url;
+                        }
+                        if ($action === 'delete') {
+                            $url = Url::to(['protocol/delete', 'id' => $model->id, 'deal_id' => $deal_id ?: '']);
+                            return $url;
+                        }
+                        return null;
+                    }
+                ],
             ],
-            'roleInThis',
-            'suspect',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+        ]);
+    } catch (Exception $e) {
+        echo '<div class="alert alert-warning">' . (YII_DEBUG ? $e->getMessage(): 'Ошибка отображения виджета.' ) . '</div>';
+    } ?>
     <?php Pjax::end(); ?>
 </div>

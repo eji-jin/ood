@@ -44,9 +44,10 @@ class ProtocolController extends Controller
 
     /**
      * Lists all Protocol models.
+     * @param null $deal_id
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($deal_id = null)
     {
         $searchModel = new ProtocolSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -102,15 +103,16 @@ class ProtocolController extends Controller
      * Updates an existing Protocol model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
+     * @param null $deal_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $deal_id = null)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'deal_id' => $deal_id]);
         }
 
         return $this->render('update', [
@@ -125,11 +127,11 @@ class ProtocolController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $deal_id = null)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'ProtocolSearch[deal_id]' => $deal_id]);
     }
 
     /**

@@ -5,10 +5,12 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Protocol */
 
-$this->title = 'Update Protocol: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Protocols', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$deal_id = \Yii::$app->request->get('deal_id');
+
+$this->title = 'Редактировать Протокол: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Протоколы', 'url' => ['index', 'ProtocolSearch[deal_id]' =>$deal_id ?: '']];
+$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id, 'deal_id' => $deal_id ?: '']];
+$this->params['breadcrumbs'][] = 'Редактировать';
 ?>
 <div class="protocol-update">
 
@@ -16,6 +18,7 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'deal_id' => $deal_id ?: ''
     ]) ?>
 
 </div>
