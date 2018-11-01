@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Deal;
+use app\models\Protocol;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -27,6 +28,19 @@ use yii\widgets\ActiveForm;
             'prompt' => 'Выберите дело'
         ])->label('Номер дела') ?>
 
+    <?= $form->field($model, 'protocol_id')->dropDownList(
+        \yii\helpers\ArrayHelper::map(
+            Protocol::find()->select(['id','suspect'])->asArray()->all(),
+            'id',
+            'suspect'
+        ),
+        [
+            'options' => isset($deal_id) ? [
+                $deal_id => ['Selected' => 'selected']
+            ] : [],
+            'prompt' => 'Выберите протокол'
+        ])->label('Протокол') ?>
+
     <?php // $form->field($model, 'number')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'evidence')->textarea(['rows' => 6]) ?>
@@ -44,7 +58,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'dateofreview')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

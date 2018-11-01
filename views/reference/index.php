@@ -8,6 +8,8 @@ use yii\helpers\Url;
 /* @var $searchModel app\models\ReferenceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+$deal_id = \Yii::$app->request->get('ReferenceSearch')['deal_id'];
+
 $this->title = 'Справка';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -17,8 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Создать пункт справки', ['create', 'id' => \Yii::$app->request->get('ReferenceSearch')['deal_id']], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Скачать', ['download', 'id' => \Yii::$app->request->get('ReferenceSearch')['deal_id']], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать пункт справки', ['create', 'deal_id' =>  $deal_id ?: ''], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Скачать', ['download', 'deal_id' => $deal_id ?: ''], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -61,7 +63,24 @@ $this->params['breadcrumbs'][] = $this->title;
             //'lawyer:ntext',
             //'dateofreview:ntext',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'urlCreator' => function ($action, $model, $key, $index) use ($deal_id) {
+                    if ($action === 'view') {
+                        $url = Url::to(['reference/view', 'id' => $model->id, 'deal_id' => $deal_id ?: '']);
+                        return $url;
+                    }
+                    if ($action === 'update') {
+                        $url = Url::to(['reference/update', 'id' => $model->id, 'deal_id' => $deal_id ?: '']);
+                        return $url;
+                    }
+                    if ($action === 'delete') {
+                        $url = Url::to(['reference/delete', 'id' => $model->id, 'deal_id' => $deal_id ?: '']);
+                        return $url;
+                    }
+                    return null;
+                }
+            ],
         ],
         'formatter' => [
             'class' => 'yii\i18n\Formatter',

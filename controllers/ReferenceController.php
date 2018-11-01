@@ -82,7 +82,7 @@ class ReferenceController extends Controller
         $model = new Reference();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'ReferenceSearch[deal_id]' => $deal_id]);
         }
 
         return $this->render('create', [
@@ -140,9 +140,9 @@ class ReferenceController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-    public function actionDownload($id)
+    public function actionDownload($deal_id)
     {
-        (new ReferenceDownload())->getDocument($id);
+        (new ReferenceDownload())->getDocument($deal_id);
 //        $this->goBack();
     }
 

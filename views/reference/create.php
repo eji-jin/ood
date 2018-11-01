@@ -8,7 +8,7 @@ use yii\helpers\Html;
 /* @var null $deal_id number */
 
 $this->title = 'Создать пункт справки';
-$this->params['breadcrumbs'][] = ['label' => 'Пункты справки', 'url' => ['index', 'RererenceSearch[deal_id]' => $model['id']?: '']];
+$this->params['breadcrumbs'][] = ['label' => 'Пункты справки', 'url' => ['index', 'RererenceSearch[deal_id]' => $deal_id?: '']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reference-create">
