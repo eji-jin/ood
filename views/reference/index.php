@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Создать пункт справки', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Скачать', ['download', 'id' => \Yii::$app->request->get('ProtocolSearch')['deal_id']], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Скачать', ['download', 'id' => \Yii::$app->request->get('ReferenceSearch')['deal_id']], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
