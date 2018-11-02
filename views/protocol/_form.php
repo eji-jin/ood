@@ -75,30 +75,6 @@ use yii\jui\InputWidget;
     </div>
 
 
-<?php ob_start(); ?>
-<?= $form->field($model, 'mp')->textInput() ?>
-<?= $form->field($model, 'evidence')->textarea(['rows' => 2]) ?>
-<?= $form->field($model, 'claim')->textInput() ?>
-<?= $form->field($model, 'securofclaim')->textInput() ?>
-<?= $form->field($model, 'guarantee')->textInput() ?>
-<?= $form->field($model, 'cost')->textInput() ?>
-<?= $form->field($model, 'lawyer')->textInput() ?>
-<?= $form->field($model, 'dateofreview')->textInput() ?>
-<?php
-echo $form->field($model, 'sent')->textInput() ?>
-<div class="form-group">
-    <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
-
-</div>
-<?php $content = ob_get_clean(); ?>
-
-<?php
-echo \yii\bootstrap\Collapse::widget([
-        'items'=>[
-                ['label'=>'СПРАВКА',
-                'content'=>$content]
-        ]
-]);?>
 
     <?php ActiveForm::end(); ?>
 

@@ -156,6 +156,7 @@ class ProtocolDownload
         $section->addText('По существу могу показать следующее:' . $values['indications'],null, array('align' =>'both', 'spaceAfter' =>0));
 
         $bodyguard = $case->q($values['otherPerson'], NCLNameCaseRu::$RODITLN);
+        $suspectRoditln = $case->q(' '.$values['suspect'], NCLNameCaseRu::$RODITLN);
         $section->addTextBreak(1);
         $section->addText('Перед началом,  в ходе либо по окончании допроса подозреваемого от участвующих лиц ' . $array .', защитника '.$bodyguard.' заявления '. $values['dopstat'],null, array('align' =>'both', 'spaceAfter' =>0));
         $section->addText('Содержание заявлений: ' . $values['dopstattext'],null, array('align' =>'both', 'spaceAfter' =>0));

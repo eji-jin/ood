@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Создать пункт справки', ['create', 'deal_id' =>  $deal_id ?: ''], ['class' => 'btn btn-success']) ?>
+        <!-- Html::a('Создать пункт справки', ['create', 'deal_id' =>  $deal_id ?: ''], ['class' => 'btn btn-success']) -->
         <?= Html::a('Скачать', ['download', 'deal_id' => $deal_id ?: ''], ['class' => 'btn btn-success']) ?>
     </p>
 
@@ -50,13 +50,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'label' => 'ФИО'
             ],
-            'evidence:ntext',
+            //'evidence:ntext',
             'claim:ntext',
             'securofclaim:ntext',
-            'guarantee:ntext',
-            'cost:ntext',
-            'lawyer:ntext',
-            'dateofreview:ntext',
+            //'guarantee:ntext',
+            //'cost:ntext',
+            //'lawyer:ntext',
+            //'dateofreview:ntext',
             //'securofclaim:ntext',
             //'guarantee:ntext',
             //'cost:ntext',

@@ -49,11 +49,9 @@ class IndictmentDownload
 
         $section->addText('ОБВИНИТЕЛЬНЫЙ АКТ',null, array('align' =>'center', 'spaceAfter' =>0));
         $section->addText('ПО УГОЛОВНОМУ ДЕЛУ № '.$deals['number'],null, array('align' =>'center', 'spaceAfter' =>0));
-        $section->addText('по обвинению'. $names .' в совершении преступления предусмотренного '. $prot['incriminate'],null, array('align' =>'both', 'spaceAfter' =>0));
+        $section->addText('по обвинению'. $names .' в совершении преступления предусмотренного '. $prot['incriminate'],null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
 
 
-        $section = $w->addSection();
-        $section->addText('Бла бла');
 
         // это хня специфичная для акта
         $indectment = Indictment::findOne(['deal_id' => $id]);

@@ -117,7 +117,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="form-group">
             <label class="col-lg-3" for="aggcircum">Отягчающие</label>
             <div class="col-lg-9">
-                <input id="aggcircum" class="form-control" name="indictment[aggcircum]" value="<?= $model->aggcircum  ?>" >
+
+                <textarea id="aggcircum" class="form-control" name="indictment[aggcircum]"><?= $model->excircum  ?></textarea>
             </div>
         </div>
         <div class="form-group">

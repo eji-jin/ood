@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
 /* @var null $deal_id number */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Справка', 'url' => ['index', 'ReferenceSearch[deal_id]' => $deal_id]];
+$this->params['breadcrumbs'][] = ['label' => 'Справка', 'url' => ['index', 'ReferenceSearch[deal_id]' => $model['deal_id']]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reference-view">
