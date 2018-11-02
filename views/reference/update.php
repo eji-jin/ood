@@ -4,11 +4,18 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Reference */
+/* @var null $deal_id number */
 
-$this->title = 'Update Reference: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'References', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Редактировать Пункт Справки: ' . $model->id;
+$this->params['breadcrumbs'][] = [
+    'label' => 'Пункты Справки',
+    'url' => ['index', 'ReferenceSearch[deal_id]' => $deal_id]
+];
+$this->params['breadcrumbs'][] = [
+    'label' => $model->id,
+    'url' => ['view', 'id' => $model->id, 'deal_id' => $deal_id]
+];
+$this->params['breadcrumbs'][] = 'Редактировать';
 ?>
 <div class="reference-update">
 
@@ -16,6 +23,7 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'deal_id' => $deal_id
     ]) ?>
 
 </div>

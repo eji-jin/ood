@@ -61,13 +61,15 @@ class ReferenceController extends Controller
     /**
      * Displays a single Reference model.
      * @param integer $id
+     * @param null $deal_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $deal_id = null)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'deal_id' => $deal_id,
         ]);
     }
 
@@ -95,10 +97,11 @@ class ReferenceController extends Controller
      * Updates an existing Reference model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
+     * @param null $deal_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $deal_id = null)
     {
         $model = $this->findModel($id);
 
@@ -108,6 +111,7 @@ class ReferenceController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'deal_id' => $deal_id
         ]);
     }
 
@@ -115,14 +119,17 @@ class ReferenceController extends Controller
      * Deletes an existing Reference model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
+     * @param null $deal_id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $deal_id = null)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'ReferenceSearch[deal_id]' => $deal_id]);
     }
 
     /**

@@ -5,9 +5,10 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Reference */
+/* @var null $deal_id number */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'References', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Справка', 'url' => ['index', 'ReferenceSearch[deal_id]' => $deal_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reference-view">
@@ -15,8 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a(
+                'Редактировать',
+                ['update', 'id' => $model->id, 'deal_id' => $deal_id],
+                ['class' => 'btn btn-primary']
+        ) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id,  'deal_id' => $deal_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -25,20 +30,33 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'deal_id',
-            'number:ntext',
-            'evidence:ntext',
-            'claim:ntext',
-            'securofclaim:ntext',
-            'guarantee:ntext',
-            'cost:ntext',
-            'lawyer:ntext',
-            'dateofreview:ntext',
-        ],
-    ]) ?>
+    <?php try {
+         echo DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                'id',
+                [
+                    'attribute' => 'deal_id',
+                    'label' => 'Номер дела',
+                    'content' => function ($model) {
+                        echo \app\models\Deal::findOne($model['deal_id'])['number'];
+                    },
+                ],
+                'evidence:ntext',
+                'claim:ntext',
+                'securofclaim:ntext',
+                'guarantee:ntext',
+                'cost:ntext',
+                'lawyer:ntext',
+                'dateofreview:ntext',
+            ],
+            'formatter' => [
+                'class' => yii\i18n\Formatter::className(),
+                'nullDisplay' => '-'
+            ]
+        ]);
+    } catch (Exception $e) {
+        echo '<div class="alert alert-warning">' . (YII_DEBUG ? $e->getMessage() : 'Ошибка отображения виджета.') . '</div>';
+    } ?>
 
 </div>
