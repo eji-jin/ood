@@ -22,6 +22,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'name')->textInput() ?>
 
     <?= $form->field($model, 'officer')->textInput() ?>
+    <?= $form->field($model, 'deal_area')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

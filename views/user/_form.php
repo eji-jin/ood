@@ -18,6 +18,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'displayname')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'area_code')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'role')->dropDownList(
             \yii\helpers\ArrayHelper::map(
                 Yii::$app->authManager->getRoles(),

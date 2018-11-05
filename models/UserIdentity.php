@@ -80,7 +80,7 @@ class UserIdentity extends \yii\base\BaseObject implements \yii\web\IdentityInte
                 'id' => $user['id'],
                 'username' => $user['username'],
                 'password' => $user['password'],
-                'displayname' => $user['displayname']
+                'displayname' => $user['displayname'],
             ]);
 
         }

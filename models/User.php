@@ -29,7 +29,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password', 'displayname', 'role'], 'string', 'max' => 255],
+            [['username', 'password', 'displayname', 'role','area_code'], 'string', 'max' => 255],
         ];
     }
 
@@ -44,6 +44,7 @@ class User extends \yii\db\ActiveRecord
             'password' => 'Пароль',
             'displayname' => 'Ф.И.О',
             'role' => 'Роль',
+            'area_code'=>'Район',
         ];
     }
 }

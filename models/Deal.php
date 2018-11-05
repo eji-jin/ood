@@ -33,7 +33,7 @@ class Deal extends \yii\db\ActiveRecord
         return [
             [['number'], 'integer'],
             [['number', 'name'], 'required'],
-            [['position', 'rank', 'name', 'officer'], 'string'],
+            [['position', 'rank', 'name', 'officer','deal_area'], 'string'],
 
         ];
     }
@@ -50,6 +50,7 @@ class Deal extends \yii\db\ActiveRecord
             'rank' => 'Звание',
             'name' => 'ФИО',
             'officer' => 'Подразделение',
+            'deal_area'=>'Район',
 
         ];
     }

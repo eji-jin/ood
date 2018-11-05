@@ -16,13 +16,15 @@ class m181006_105909_create_user_table extends Migration
             'password'    => $this->char(255)->comment('Пароль'),
             'displayname' => $this->char(255)->comment('Ф.И.О'),
             'role'        => $this->char(255)->comment('Роль'),
+            'area_code'        => $this->char(255)->comment('Район'),
         ],'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB');
 
         $this->insert('user',[
             'username' => 'admin',
             'password' => 'admin',
             'displayname' => 'Администратор',
-            'role' => 'admin'
+            'role' => 'admin',
+            'area_code' => '0',
         ]);
     }
 

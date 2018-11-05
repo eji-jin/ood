@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'number',
             'name',
             'officer',
+            'deal_area',
             [
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => [

@@ -28,6 +28,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'role') ?>
 
+    <?= $form->field($model, 'area_code') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Сброс', ['class' => 'btn btn-default']) ?>
