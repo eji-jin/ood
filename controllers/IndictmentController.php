@@ -20,6 +20,8 @@ use yii\filters\AccessControl;
  */
 class IndictmentController extends Controller
 {
+
+    public $enableCsrfValidation = false;
     /**
      * {@inheritdoc}
      */
