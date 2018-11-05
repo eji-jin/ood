@@ -35,12 +35,23 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    if(!\Yii::$app->user->isGuest) {
+        $user_id = \Yii::$app->user->identity->getId();
+        $user_dn = \app\models\User::findOne($user_id);
+        $code = $user_dn->area_code;
+    }
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Главная', 'url' => ['/site/index']],
             Yii::$app->user->can('editUsers') ? ['label' => 'Пользователи', 'url' => ['/user/index']] : '',
-            Yii::$app->user->can('useForms') ? ['label' => 'Дела', 'url' => ['deal/index']] : '',
+            //И поменять ссылку в меню с ['deal/index'] на ['deal/index', 'DealSearch[area_id]' => \Yii::$app->user->identity->area_id]
+
+            Yii::$app->user->can('useForms') ? ['label' => 'Дела', 'url' => ['deal/index', 'DealSearch[area_code]' => $code]] : '',
+
+
+
             //Yii::$app->user->can('useForms') ? ['label' => 'Протоколы', 'url' => ['protocol/index']] : '',
             Yii::$app->user->isGuest ? (
                 ['label' => 'Вход', 'url' => ['/site/login']]

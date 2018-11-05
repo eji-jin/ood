@@ -53,9 +53,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cost')->textarea(['rows' => 2]) ?>
 
-    <!--$form->field($model, 'lawyer')->textarea(['rows' => 6]) -->
+    <?= $form->field($model, 'aggcircum')->textarea(['rows' => 2]) ?>
 
-    <!--$form->field($model, 'dateofreview')->textarea(['rows' => 6]) -->
+    <?= $form->field($model, 'excircum')->textarea(['rows' => 2]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

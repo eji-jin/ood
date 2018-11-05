@@ -20,7 +20,7 @@ class m181018_083849_create_indictment_table extends Migration
             'id' => $this->primaryKey(),
             'deal_id' => $this->integer()->notNull(),
             'number' => $this->text(),
-            
+            'date_indict' => $this->text(),
             //Прокурор
             'area' => $this->text()->comment('Район'),
             'title' => $this->text()->comment('Звание прокурора'),
@@ -34,7 +34,8 @@ class m181018_083849_create_indictment_table extends Migration
             'resolution' => $this->text()->comment('Информация из постановления о возб. угол. дела'),
             'expertise' => $this->text()->comment('Информация из заключения экспертизы'),
             //Доказательства
-            'eviden' => $this->text()->comment('Доказательства'),
+            'eviden' => $this->text()->comment('Вещественные доказательства'),
+            'evidences' => $this->text()->comment('Доказательства'),
             //Обстоятельства
             'excircum' => $this->text()->comment('Смягчающие'),
             'aggcircum' => $this->text()->comment('Отягчающие'),

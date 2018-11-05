@@ -62,6 +62,8 @@ $this->params['breadcrumbs'][] = $this->title;
             //'cost:ntext',
             //'lawyer:ntext',
             //'dateofreview:ntext',
+            //'aggcircum:ntext',
+            //'excircum:ntext',
 
             [
                 'class' => 'yii\grid\ActionColumn',

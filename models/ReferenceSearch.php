@@ -19,7 +19,7 @@ class ReferenceSearch extends Reference
     {
         return [
             [['id', 'deal_id'], 'integer'],
-            [['number', 'evidence', 'claim', 'securofclaim', 'guarantee', 'cost', 'lawyer', 'dateofreview'], 'safe'],
+            [['number', 'evidence', 'claim', 'securofclaim', 'guarantee', 'cost', 'lawyer', 'dateofreview', 'excircum', 'aggcircum'], 'safe'],
         ];
     }
 

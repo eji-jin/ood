@@ -13,6 +13,7 @@ use Yii;
  * @property string rank
  * @property string name
  * @property string officer
+ * @property string area_code
  * @property Protocol[] $protocols
  */
 class Deal extends \yii\db\ActiveRecord
@@ -33,7 +34,7 @@ class Deal extends \yii\db\ActiveRecord
         return [
             [['number'], 'integer'],
             [['number', 'name'], 'required'],
-            [['position', 'rank', 'name', 'officer','deal_area'], 'string'],
+            [['position', 'rank', 'name', 'officer','area_code'], 'string'],
 
         ];
     }
@@ -50,7 +51,7 @@ class Deal extends \yii\db\ActiveRecord
             'rank' => 'Звание',
             'name' => 'ФИО',
             'officer' => 'Подразделение',
-            'deal_area'=>'Район',
+            'area_code'=>'Район',
 
         ];
     }

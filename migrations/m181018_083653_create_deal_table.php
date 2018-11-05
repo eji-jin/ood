@@ -20,7 +20,7 @@ class m181018_083653_create_deal_table extends Migration
             'rank' => $this->text()->comment('Звание'),
             'name' => $this->text()->comment('Ф.И.О. дознавателя'),
             'officer' =>$this->text()->comment('Подразделение'),
-            'deal_area' =>$this->text()->comment('Район'),
+            'area_code' =>$this->text()->comment('Район'),
 
         ]);
     }

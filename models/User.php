@@ -12,6 +12,7 @@ use Yii;
  * @property string $password Пароль
  * @property string $displayname Ф.И.О
  * @property string $role Роль
+ * @property string $area_code
  */
 class User extends \yii\db\ActiveRecord
 {

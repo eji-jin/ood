@@ -24,7 +24,7 @@ class m181006_105909_create_user_table extends Migration
             'password' => 'admin',
             'displayname' => 'Администратор',
             'role' => 'admin',
-            'area_code' => '0',
+            'area_code' => '',
         ]);
     }
 

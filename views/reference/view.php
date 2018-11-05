@@ -49,6 +49,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'cost:ntext',
                 'lawyer:ntext',
                 'dateofreview:ntext',
+                'aggcircum:ntext',
+                'excircum:ntext',
             ],
             'formatter' => [
                 'class' => yii\i18n\Formatter::className(),

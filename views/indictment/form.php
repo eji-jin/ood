@@ -20,12 +20,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <form id="indictment-form" method="post" class="form-horizontal" >
+
         <input id="form-token" type="hidden" name="<?=Yii::$app->request->csrfParam?>" value="<?=Yii::$app->request->csrfToken?>"/>
+        <form id="indictment-form" method="post" class="form-horizontal" >
+
+
         <?php foreach ($suspects as $index => $suspect): ?>
             <p class="lead"><?= $suspect->suspect; ?></p>
             <div class="form-group">
-                <label class="col-lg-3" for="suspect-<?= $index ?>">Обстоятельства преступления</label>
+                <label class="col-lg-3" for="suspect-<?= $index ?>">Обстоятельства</label>
                 <div class="col-lg-9">
                     <input id="suspect-<?= $index ?>" class="form-control" name="meta[<?= $index; ?>][value]" value="<?= isset($meta[$suspect->id]) ? $meta[$suspect->id] : '';  ?>" >
                 </div>
@@ -37,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php foreach ($notSuspects as $index => $notSuspect): ?>
             <p class="lead"><?= $notSuspect->suspect; ?></p>
             <div class="form-group">
-                <label class="col-lg-3" for="suspect-<?= $index ?>">Показания потерпевших</label>
+                <label class="col-lg-3" for="suspect-<?= $index ?>">Показания потерпевших и свидетелей</label>
                 <div class="col-lg-9">
                     <input id="suspect-<?= $index ?>" class="form-control" name="notsuspects[<?= $index; ?>][value]" value="<?= $notSuspect->indications  ?>" >
                 </div>
@@ -103,24 +106,18 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
         <div class="form-group">
-            <label class="col-lg-3" for="eviden">Доказательства</label>
+            <label class="col-lg-3" for="eviden">Вещественные доказательства</label>
             <div class="col-lg-9">
                 <input id="eviden" class="form-control" name="indictment[eviden]" value="<?= $model->eviden  ?>" >
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-lg-3" for="excircum">Смягчающие</label>
-            <div class="col-lg-9">
-                <input id="excircum" class="form-control" name="indictment[excircum]" value="<?= $model->excircum  ?>" >
+            <div class="form-group">
+                <label class="col-lg-3" for="evidences">Прочие доказательства</label>
+                <div class="col-lg-9">
+                    <input id="evidences" class="form-control" name="indictment[evidences]" value="<?= $model->evidences  ?>" >
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3" for="aggcircum">Отягчающие</label>
-            <div class="col-lg-9">
 
-                <textarea id="aggcircum" class="form-control" name="indictment[aggcircum]"><?= $model->excircum  ?></textarea>
-            </div>
-        </div>
         <div class="form-group">
             <div class="col-lg-9 col-lg-offset-3">
                 <?= Html::submitButton('Сохранить',

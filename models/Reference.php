@@ -18,6 +18,8 @@ use Yii;
  * @property string $cost Издержки
  * @property string $lawyer Защитник
  * @property string $dateofreview Дата ознакомления
+ * @property string $excircum Смягчающие
+ * @property string $aggcircum Отягчающие
  *
  * @property Deal $deal
  */
@@ -39,7 +41,7 @@ class Reference extends \yii\db\ActiveRecord
         return [
             [['deal_id', 'protocol_id'], 'required'],
             [['deal_id', 'protocol_id'], 'integer'],
-            [['number', 'evidence', 'claim', 'securofclaim', 'guarantee', 'cost', 'lawyer', 'dateofreview'], 'string'],
+            [['number', 'evidence', 'claim', 'securofclaim', 'guarantee', 'cost', 'lawyer', 'dateofreview', 'excircum', 'aggcircum'], 'string'],
             [['deal_id'], 'exist', 'skipOnError' => true, 'targetClass' => Deal::className(), 'targetAttribute' => ['deal_id' => 'id']],
             [['protocol_id'], 'exist', 'skipOnError' => true, 'targetClass' => Protocol::className(), 'targetAttribute' => ['protocol_id' => 'id']],
         ];
@@ -62,6 +64,8 @@ class Reference extends \yii\db\ActiveRecord
             'cost' => 'Процессуальные издержки',
             'lawyer' => 'Защитник',
             'dateofreview' => 'Дата ознакомления',
+            'excircum' => 'Смягчающие обстоятельства',
+            'aggcircum' => 'Отягчающие обстоятельства',
         ];
     }
 

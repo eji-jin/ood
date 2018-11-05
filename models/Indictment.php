@@ -19,9 +19,11 @@ use Yii;
  * @property string $handinfo Информация из рукописных документов
  * @property string $resolution Информация из постановления о возб. угол. дела
  * @property string $expertise Информация из заключения экспертизы
- * @property string $eviden Доказательства
+ * @property string $eviden Вещественные доказательства
  * @property string $excircum Смягчающие
  * @property string $aggcircum Отягчающие
+ * @property string $date_indict Дата возбуждения
+ * @property string $evidences Доказательства
  *
  * @property Deal $deal
  */
@@ -43,7 +45,7 @@ class Indictment extends \yii\db\ActiveRecord
         return [
             [['deal_id'], 'required'],
             [['deal_id'], 'integer'],
-            [['number', 'area', 'title', 'prosecutor', 'chiefposition', 'chiefrank', 'chiefname', 'handinfo', 'resolution', 'expertise', 'eviden', 'excircum', 'aggcircum'], 'string'],
+            [['number', 'area', 'title', 'prosecutor', 'chiefposition', 'chiefrank', 'chiefname', 'handinfo', 'resolution', 'expertise', 'eviden', 'excircum', 'aggcircum', 'date_indict', 'evidences'], 'string'],
             [['deal_id'], 'exist', 'skipOnError' => true, 'targetClass' => Deal::className(), 'targetAttribute' => ['deal_id' => 'id']],
         ];
     }
@@ -66,9 +68,11 @@ class Indictment extends \yii\db\ActiveRecord
             'handinfo' => 'Информация из рукописных источников',
             'resolution' => 'Постановление о возбуждении уголовного дела',
             'expertise' => 'Информация из заключения экспертизы',
-            'eviden' => 'Доказательства',
+            'eviden' => 'Вещественные оказательства',
             'excircum' => 'Смягчающие обстоятельства',
             'aggcircum' => 'Отягчающие обстоятельства',
+            'date_indict'=>'Дата возбуждения дела',
+            'evidences'=>'Доказательства',
         ];
     }
 

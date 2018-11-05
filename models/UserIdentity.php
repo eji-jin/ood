@@ -11,6 +11,7 @@ class UserIdentity extends \yii\base\BaseObject implements \yii\web\IdentityInte
     public $role;
     public $authKey;
     public $accessToken;
+    public $area_code;
 
     private static $users = [
         '100' => [
@@ -42,6 +43,7 @@ class UserIdentity extends \yii\base\BaseObject implements \yii\web\IdentityInte
             'username' => $user['username'],
             'password' => $user['password'],
             'displayname' => $user['displayname'],
+            'area_code' => $user['area_code'],
         ]);
     }
 
@@ -81,6 +83,7 @@ class UserIdentity extends \yii\base\BaseObject implements \yii\web\IdentityInte
                 'username' => $user['username'],
                 'password' => $user['password'],
                 'displayname' => $user['displayname'],
+                'area_code' => $user['area_code'],
             ]);
 
         }

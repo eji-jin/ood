@@ -91,6 +91,7 @@ class IndictmentDownload
             $section->addText('12. Иные данные о личности: '. $Suspect->other,null, array('align' =>'both', 'spaceAfter' =>0));
             $section->addTextBreak(1);
 
+            $section->addText('Показания обвиняемого ' . $Suspect->crime,null, array('align' =>'both', 'spaceAfter' =>0));
 
 
            ///$section->addText(Protocol::findOne($suspectes['protocol_id'])->suspect);

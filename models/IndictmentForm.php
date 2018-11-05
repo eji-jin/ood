@@ -21,6 +21,7 @@ class IndictmentForm extends Model
         \Yii::warning(print_r($postValues, true));
         // save indictment
         $indictment = Indictment::findOne(['deal_id' => $postValues['indictment']['deal_id']]) ?: new Indictment();
+        $indictment->deal_id = $postValues['indictment']['date_indict'];
         $indictment->deal_id = $postValues['indictment']['deal_id'];
         $indictment->area = $postValues['indictment']['area'];
         $indictment->title = $postValues['indictment']['title'];
@@ -34,6 +35,8 @@ class IndictmentForm extends Model
         $indictment->eviden	 = $postValues['indictment']['eviden'];
         $indictment->excircum = $postValues['indictment']['excircum'];
         $indictment->aggcircum = $postValues['indictment']['aggcircum'];
+        $indictment->evidences = $postValues['indictment']['evidences'];
+        $indictment->date_indict = $postValues['indictment']['date_indict'];
         $indictment->save();
         // TODO: обновлять данные если уже существует
 

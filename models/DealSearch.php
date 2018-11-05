@@ -19,7 +19,7 @@ class DealSearch extends Deal
     {
         return [
             [['id', 'number'], 'integer'],
-            [['position', 'rank', 'name', 'officer', 'deal_area'], 'string'],
+            [['position', 'rank', 'name', 'officer', 'area_code'], 'string'],
 
         ];
     }
@@ -67,7 +67,7 @@ class DealSearch extends Deal
         $query->andFilterWhere(['like', 'position', $this->position])
             ->andFilterWhere(['like', 'rank', $this->rank])
             ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'deal_area', $this->name])
+            ->andFilterWhere(['like', 'area_code', $this->area_code])
             ->andFilterWhere(['like', 'officer', $this->officer]);
 
         return $dataProvider;

@@ -19,7 +19,7 @@ class IndictmentSearch extends Indictment
     {
         return [
             [['id', 'deal_id'], 'integer'],
-            [['number', 'area', 'title', 'prosecutor', 'chiefposition', 'chiefrank', 'chiefname', 'handinfo', 'resolution', 'expertise', 'eviden', 'excircum', 'aggcircum'], 'safe'],
+            [['number', 'area', 'title', 'prosecutor', 'chiefposition', 'chiefrank', 'chiefname', 'handinfo', 'resolution', 'expertise', 'eviden', 'excircum', 'aggcircum', 'date_indict', 'evidences'], 'safe'],
         ];
     }
 
@@ -65,6 +65,7 @@ class IndictmentSearch extends Indictment
 
         $query->andFilterWhere(['like', 'number', $this->number])
             ->andFilterWhere(['like', 'area', $this->area])
+            ->andFilterWhere(['like', 'date_indict', $this->area])
             ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'prosecutor', $this->prosecutor])
             ->andFilterWhere(['like', 'chiefposition', $this->chiefposition])
@@ -75,7 +76,11 @@ class IndictmentSearch extends Indictment
             ->andFilterWhere(['like', 'expertise', $this->expertise])
             ->andFilterWhere(['like', 'eviden', $this->eviden])
             ->andFilterWhere(['like', 'excircum', $this->excircum])
-            ->andFilterWhere(['like', 'aggcircum', $this->aggcircum]);
+            ->andFilterWhere(['like', 'aggcircum', $this->aggcircum])
+
+
+            ->andFilterWhere(['like', 'evidences', $this->evidences])
+            ->andFilterWhere(['like', 'date_indict', $this->date_indict]);
 
         return $dataProvider;
     }
