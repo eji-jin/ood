@@ -61,8 +61,12 @@ class IndictmentForm extends Model
                     'indictment_id' => $indictment->id,
                     'protocol_id' => $suspect['protocol_id'],
                     'value' => $suspect['value'],
+                    'otyagch' => $suspect['otyagch'],
+                    'smyagch' => $suspect['smyagch'],
                 ], [
                     'value' => $suspect['value'],
+                    'otyagch' => $suspect['otyagch'],
+                    'smyagch' => $suspect['smyagch'],
                 ])->execute();
 
             }
@@ -73,6 +77,8 @@ class IndictmentForm extends Model
             foreach ($postValues['notsuspects'] as $notsuspect) {
                 $protocol = Protocol::findOne($notsuspect['protocol_id']);
                 $protocol->indications = $notsuspect['value'];
+                $protocol->indications = $notsuspect['otyagch'];
+                $protocol->indications = $notsuspect['smyagch'];
                 $protocol->save();
             }
         }

@@ -35,6 +35,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 <input type="hidden" name="meta[<?= $index; ?>][deal_id]" value="<?= $suspect->deal_id; ?>">
                 <input type="hidden" name="meta[<?= $index; ?>][protocol_id]" value="<?= $suspect->id; ?>">
             </div>
+
+            <div class="form-group">
+                <label class="col-lg-3" for="suspect-<?= $index ?>">Отягчающие</label>
+                <div class="col-lg-9">
+                    <input id="suspect-<?= $index ?>" class="form-control" name="meta[<?= $index; ?>][otyagch]" value="<?= isset($meta[$suspect->id]) ? $meta[$suspect->id] : '';  ?>" >
+                </div>
+                <input type="hidden" name="meta[<?= $index; ?>][deal_id]" value="<?= $suspect->deal_id; ?>">
+                <input type="hidden" name="meta[<?= $index; ?>][protocol_id]" value="<?= $suspect->id; ?>">
+            </div>
+
         <?php endforeach; ?>
         <hr>
         <?php foreach ($notSuspects as $index => $notSuspect): ?>

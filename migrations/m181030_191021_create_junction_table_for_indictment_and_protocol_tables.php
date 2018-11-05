@@ -20,6 +20,8 @@ class m181030_191021_create_junction_table_for_indictment_and_protocol_tables ex
             'indictment_id' => $this->integer(),
             'protocol_id' => $this->integer(),
             'value' => $this->string(),
+            'otyagch' => $this->string(),
+            'smyagch' => $this->string(),
             'PRIMARY KEY(indictment_id, protocol_id)',
         ]);
 
