@@ -155,8 +155,12 @@ class IndictmentController extends Controller
         $suspects = Protocol::findAll(['roleInThis' => 'подозреваемый', 'deal_id' => $deal_id]);
         $notSuspects = Protocol::find()->where(['!=', 'roleInThis', 'подозреваемый'])->andWhere(['deal_id' => $deal_id])->all();
         if ($model) {
-            $meta = (new Query())->select(['protocol_id', 'value'])->from('indictment_protocol')->where(['indictment_id' => $model->id])->all();
-            $meta = ArrayHelper::map($meta, 'protocol_id', 'value');
+
+            $meta = (new Query())->select(['protocol_id', 'value', 'otyagch', 'smyagch', 'costs', 'mera_prin'])->from('indictment_protocol')->where(['indictment_id' => $model->id])->all();
+            $meta = ArrayHelper::map($meta, 'protocol_id', function($model) {
+                return ['value' => $model['value'], 'otyagch' => $model['otyagch'], 'smyagch' => $model['smyagch'], 'costs' => $model['costs'], 'mera_prin' => $model['mera_prin']];
+            });
+            //$meta, 'protocol_id', 'value'
         } else {
             $meta = [];
             $model = new Indictment();
@@ -168,7 +172,7 @@ class IndictmentController extends Controller
             'model' => $model,
             'suspects' => $suspects,
             'notSuspects' => $notSuspects,
-            'meta' => $meta
+            'meta' => $meta,
         ]);
     }
 

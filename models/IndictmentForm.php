@@ -37,6 +37,7 @@ class IndictmentForm extends Model
         $indictment->aggcircum = $postValues['indictment']['aggcircum'];
         $indictment->evidences = $postValues['indictment']['evidences'];
         $indictment->date_indict = $postValues['indictment']['date_indict'];
+
         $indictment->save();
         // TODO: обновлять данные если уже существует
 
@@ -63,10 +64,14 @@ class IndictmentForm extends Model
                     'value' => $suspect['value'],
                     'otyagch' => $suspect['otyagch'],
                     'smyagch' => $suspect['smyagch'],
+                    'costs'=> $suspect['costs'],
+                    'mera_prin'=> $suspect['mera_prin'],
                 ], [
                     'value' => $suspect['value'],
                     'otyagch' => $suspect['otyagch'],
                     'smyagch' => $suspect['smyagch'],
+                    'costs'=> $suspect['costs'],
+                    'mera_prin'=> $suspect['mera_prin'],
                 ])->execute();
 
             }
@@ -79,6 +84,9 @@ class IndictmentForm extends Model
                 $protocol->indications = $notsuspect['value'];
                 $protocol->indications = $notsuspect['otyagch'];
                 $protocol->indications = $notsuspect['smyagch'];
+
+                $protocol->indications = $notsuspect['costs'];
+                $protocol->indications = $notsuspect['mera_prin'];
                 $protocol->save();
             }
         }

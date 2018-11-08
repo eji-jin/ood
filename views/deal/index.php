@@ -46,14 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'data-pjax' => 0
                                 ]
                         ) . ' ' .
-                        Html::a(
-                            'Справка',
-                            Url::toRoute(['reference/index', 'ReferenceSearch[deal_id]' => $model['id']]),
-                            [
-                                'class' => 'btn btn-primary btn-xs',
-                                'data-pjax' => 0
-                            ]
-                        ) . ' ' .
                             Html::a(
                                 'Обвинительный акт',
                                 Url::toRoute(['indictment/form', 'deal_id' => $model['id']]),

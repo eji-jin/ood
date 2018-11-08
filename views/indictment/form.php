@@ -7,6 +7,7 @@ use yii\helpers\Html;
 /* @var $suspects \app\models\Protocol[] */
 /* @var $notSuspects \app\models\Protocol[] */
 /* @var $meta array */
+
 /* @var $deal_id number */
 
 
@@ -24,22 +25,51 @@ $this->params['breadcrumbs'][] = $this->title;
         <input id="form-token" type="hidden" name="<?=Yii::$app->request->csrfParam?>" value="<?=Yii::$app->request->csrfToken?>"/>
         <form id="indictment-form" method="post" class="form-horizontal" >
 
+            <div class="form-group">
+                <label class="col-lg-3" for="area">Дата возбуждения уголовного дела</label>
+                <div class="col-lg-9">
+                    <input id="area" class="form-control" name="indictment[date_indict]" value="<?= $model->date_indict  ?>" >
+                </div>
+            </div>
 
         <?php foreach ($suspects as $index => $suspect): ?>
             <p class="lead"><?= $suspect->suspect; ?></p>
             <div class="form-group">
                 <label class="col-lg-3" for="suspect-<?= $index ?>">Обстоятельства</label>
                 <div class="col-lg-9">
-                    <input id="suspect-<?= $index ?>" class="form-control" name="meta[<?= $index; ?>][value]" value="<?= isset($meta[$suspect->id]) ? $meta[$suspect->id] : '';  ?>" >
+                    <textarea id="suspect-<?= $index ?>" class="form-control" name="meta[<?= $index; ?>][value]"><?= $meta[$suspect->id][value];  ?></textarea>>
                 </div>
                 <input type="hidden" name="meta[<?= $index; ?>][deal_id]" value="<?= $suspect->deal_id; ?>">
                 <input type="hidden" name="meta[<?= $index; ?>][protocol_id]" value="<?= $suspect->id; ?>">
             </div>
-
             <div class="form-group">
                 <label class="col-lg-3" for="suspect-<?= $index ?>">Отягчающие</label>
                 <div class="col-lg-9">
-                    <input id="suspect-<?= $index ?>" class="form-control" name="meta[<?= $index; ?>][otyagch]" value="<?= isset($meta[$suspect->id]) ? $meta[$suspect->id] : '';  ?>" >
+                    <input id="suspect-<?= $index ?>" class="form-control" name="meta[<?= $index; ?>][otyagch]" value="<?= $meta[$suspect->id][otyagch];  ?>" >
+                </div>
+                <input type="hidden" name="meta[<?= $index; ?>][deal_id]" value="<?= $suspect->deal_id; ?>">
+                <input type="hidden" name="meta[<?= $index; ?>][protocol_id]" value="<?= $suspect->id; ?>">
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3" for="suspect-<?= $index ?>">Смягчающие</label>
+                <div class="col-lg-9">
+                    <input id="suspect-<?= $index ?>" class="form-control" name="meta[<?= $index; ?>][smyagch]" value="<?= $meta[$suspect->id][smyagch];  ?>" >
+                </div>
+                <input type="hidden" name="meta[<?= $index; ?>][deal_id]" value="<?= $suspect->deal_id; ?>">
+                <input type="hidden" name="meta[<?= $index; ?>][protocol_id]" value="<?= $suspect->id; ?>">
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3" for="suspect-<?= $index ?>">Процессуальные издержки</label>
+                <div class="col-lg-9">
+                    <input id="suspect-<?= $index ?>" class="form-control" name="meta[<?= $index; ?>][costs]" value="<?= $meta[$suspect->id][costs];  ?>" >
+                </div>
+                <input type="hidden" name="meta[<?= $index; ?>][deal_id]" value="<?= $suspect->deal_id; ?>">
+                <input type="hidden" name="meta[<?= $index; ?>][protocol_id]" value="<?= $suspect->id; ?>">
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3" for="suspect-<?= $index ?>">Мера принуждения</label>
+                <div class="col-lg-9">
+                    <input id="suspect-<?= $index ?>" class="form-control" name="meta[<?= $index; ?>][mera_prin]" value="<?= $meta[$suspect->id][mera_prin];  ?>" >
                 </div>
                 <input type="hidden" name="meta[<?= $index; ?>][deal_id]" value="<?= $suspect->deal_id; ?>">
                 <input type="hidden" name="meta[<?= $index; ?>][protocol_id]" value="<?= $suspect->id; ?>">
@@ -48,11 +78,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php endforeach; ?>
         <hr>
         <?php foreach ($notSuspects as $index => $notSuspect): ?>
-            <p class="lead"><?= $notSuspect->suspect; ?></p>
+            <p class="lead"><?=$notSuspect->roleInThis, ' ', $notSuspect->suspect; ?></p>
             <div class="form-group">
-                <label class="col-lg-3" for="suspect-<?= $index ?>">Показания потерпевших и свидетелей</label>
+                <label class="col-lg-3" for="suspect-<?= $index ?>">Показания</label>
                 <div class="col-lg-9">
-                    <input id="suspect-<?= $index ?>" class="form-control" name="notsuspects[<?= $index; ?>][value]" value="<?= $notSuspect->indications  ?>" >
+                    <textarea id="suspect-<?= $index ?>" class="form-control" name="notsuspects[<?= $index; ?>][value]"><?= $notSuspect->indications  ?></textarea>
                 </div>
                 <input type="hidden" name="notsuspects[<?= $index; ?>][protocol_id]" value="<?= $notSuspect->id; ?>">
             </div>
@@ -97,34 +127,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 <input id="chiefname" class="form-control" name="indictment[chiefname]" value="<?= $model->chiefname  ?>" >
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-lg-3" for="handinfo">Информация из рукописных документов</label>
-            <div class="col-lg-9">
-                <input id="area" class="form-control" name="indictment[handinfo]" value="<?= $model->handinfo  ?>" >
+            <div class="form-group">
+                <label class="col-lg-3" for="expertise">Гражданский иск</label>
+                <div class="col-lg-9">
+                    <input id="expertise" class="form-control" name="indictment[expertise]" value="<?= $model->expertise  ?>" >
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3" for="resolution">Информация из постановления о возб. угол. дела</label>
-            <div class="col-lg-9">
-                <input id="resolution" class="form-control" name="indictment[resolution]" value="<?= $model->resolution  ?>" >
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3" for="expertise">Информация из заключения экспертизы</label>
-            <div class="col-lg-9">
-                <input id="expertise" class="form-control" name="indictment[expertise]" value="<?= $model->expertise  ?>" >
-            </div>
-        </div>
+
         <div class="form-group">
             <label class="col-lg-3" for="eviden">Вещественные доказательства</label>
             <div class="col-lg-9">
-                <input id="eviden" class="form-control" name="indictment[eviden]" value="<?= $model->eviden  ?>" >
+                <textarea id="eviden" class="form-control" name="indictment[eviden]"><?= $model->eviden  ?></textarea>
             </div>
         </div>
             <div class="form-group">
-                <label class="col-lg-3" for="evidences">Прочие доказательства</label>
+                <label class="col-lg-3" for="evidences">Прочие доказательства, рапорта, заключения, справки, протоколы</label>
                 <div class="col-lg-9">
-                    <input id="evidences" class="form-control" name="indictment[evidences]" value="<?= $model->evidences  ?>" >
+                    <textarea id="evidences" class="form-control" name="indictment[evidences]"><?= $model->evidences  ?></textarea>
                 </div>
             </div>
 

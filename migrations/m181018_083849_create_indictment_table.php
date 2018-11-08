@@ -39,6 +39,7 @@ class m181018_083849_create_indictment_table extends Migration
             //Обстоятельства
             'excircum' => $this->text()->comment('Смягчающие'),
             'aggcircum' => $this->text()->comment('Отягчающие'),
+            'g_isk' => $this->text()->comment('Гражданский иск'),
 
         ]);
 
