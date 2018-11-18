@@ -3,6 +3,7 @@ namespace app\models;
 use PhpOffice\PhpWord\PhpWord;
 use yii\db\Query;
 use NCL\NCLNameCaseRu;
+use PhpOffice\PhpWord\Style\ListItem;
 
 
 /**
@@ -100,7 +101,7 @@ class IndictmentDownload
         $table->addRow();
         $table->addCell(4677.16, $cellColSpan1) ->  addText('', null, array('align' =>'left', 'spaceAfter' =>0));
         $table->addCell(4677.16, $cellColSpan2) ->  addText('«_____»_______________2018г.', null, array('align' =>'center', 'spaceAfter' =>0));
-        $section->addTextBreak(1);
+        $section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
 
 
         $section->addText('ОБВИНИТЕЛЬНЫЙ АКТ',null, array('align' =>'center', 'spaceAfter' =>0));
@@ -128,6 +129,8 @@ class IndictmentDownload
         */
 
         foreach ($suspects as $suspect) {
+                        $section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
+
             $section->addText('1. Фамилия, Имя, Отчество: ' . Protocol::findOne($suspect['protocol_id'])->suspect,null, array('align' =>'both', 'spaceAfter' =>0));
             $section->addText('2. Дата рождения: ' . Protocol::findOne($suspect['protocol_id'])->birthdate,null, array('align' =>'both', 'spaceAfter' =>0));
             $section->addText('3. Место жительсва и (или) регистрации: ' . Protocol::findOne($suspect['protocol_id'])->residence,null, array('align' =>'both', 'spaceAfter' =>0));
@@ -140,93 +143,141 @@ class IndictmentDownload
             $section->addText('10. Наличие судимости: ' . Protocol::findOne($suspect['protocol_id'])->crime,null, array('align' =>'both', 'spaceAfter' =>0));
             $section->addText('11. Паспорт или иной документ удостоверяющий личность подозреваемого: ' . Protocol::findOne($suspect['protocol_id'])->pasport,null, array('align' =>'both', 'spaceAfter' =>0));
             $section->addText('12. Иные данные о личности: '. Protocol::findOne($suspect['protocol_id'])->other,null, array('align' =>'both', 'spaceAfter' =>0));
-            $section->addTextBreak(1);
+            $section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
 
-            $section->addText($suspect['value']);
+            $section->addText($suspect['value'],null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
         }
+        $section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
 
 
+
+
+
+
+
+
+
+        $ns=0; //НУМЕРАЦИЯ СПИСКА
         $section->addText('Доказательствами, подтверждающими обвинение являются: ',null, array('align' =>'both', 'spaceAfter' =>0));
-        $textArray1 = explode("\n", $indectment->evidences); foreach( $textArray1 as $text) { $section->addText($text,null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1)); }
+        $section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
 
-        $section->addText('Вещественные доказательства: '.$indectment->eviden,null, array('align' =>'both', 'spaceAfter' =>0));
+        $textArray1 = explode("\n", $indectment->evidences); foreach( $textArray1 as $text) { $section->addText(++$ns.". ".$text,null, array('align' =>'both', 'spaceAfter' =>0)); }//array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1)
 
+        $section->addText(++$ns .'. Вещественные доказательства: '.$indectment->eviden,null, array('align' =>'both', 'spaceAfter' =>0));
+
+        
+        
         $case = new NCLNameCaseRu();
         $notSuspects = Protocol::find()->where(['!=', 'roleInThis', 'подозреваемый'])->andWhere(['deal_id' => $id])->all();
         foreach ($notSuspects as $notSuspect) {
             $array11 = $case->q($notSuspect->roleInThis, NCLNameCaseRu::$RODITLN);
             $array12 = $case->q($notSuspect->suspect, NCLNameCaseRu::$RODITLN);
-            $section->addText('Показания допрошенного в качестве '.$array11.' от '.$notSuspect->createdate. ' ' .$array12. ': '. $notSuspect->indications,null, array('align' =>'both', 'spaceAfter' =>0));
+            $section->addText(++$ns. '. Показания допрошенного в качестве '.$array11.' от '.$notSuspect->createdate. ' ' .$array12. ': '. $notSuspect->indications,null, array('align' =>'both', 'spaceAfter' =>0));
         }
+        
+        
         $iSuspects = Protocol::find()->where(['=','roleInThis', 'подозреваемый'])->andWhere(['deal_id' => $id])->all();
         foreach ($iSuspects as $iSuspect) {
             $array21 = $case->q($iSuspect->roleInThis, NCLNameCaseRu::$RODITLN);
             $array22 = $case->q($iSuspect->suspect, NCLNameCaseRu::$RODITLN);
-            $section->addText('Показания допрошенного в качестве '.$array21.' от '.$iSuspect->createdate. ' ' .$array22. ': '. $iSuspect->indications,null, array('align' =>'both', 'spaceAfter' =>0));
+            $section->addText(++$ns.'. Показания допрошенного в качестве '.$array21.' от '.$iSuspect->createdate. ' ' .$array22. ': '. $iSuspect->indications,null, array('align' =>'both', 'spaceAfter' =>0));
         }
 
+$ns=0;
+$section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
 
         $section->addText('Доказательства, на которые ссылаются обвиняемые, защитник: ',null, array('align' =>'both', 'spaceAfter' =>0));
         foreach ($iSuspects as $iSuspect) {
             $array21 = $case->q($iSuspect->roleInThis, NCLNameCaseRu::$RODITLN);
             $array22 = $case->q($iSuspect->suspect, NCLNameCaseRu::$RODITLN);
-            $section->addText('Показания допрошенного в качестве '.$array21.' от '.$iSuspect->createdate. ' ' .$array22. ': '. $iSuspect->indications,null, array('align' =>'both', 'spaceAfter' =>0));
+            $section->addText(++$ns.'. Показания допрошенного в качестве '.$array21.' от '.$iSuspect->createdate. ' ' .$array22. ': '. $iSuspect->indications,null, array('align' =>'both', 'spaceAfter' =>0));
         }
+        $section->addText('Из протокола (печатного) – дублируется выше',null, array('align' =>'both', 'spaceAfter' =>0));
 
+        $section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
 
         $section->addText('Обстоятельства, смягчающие и отягчающие наказание: '.$indectment->eviden,null, array('align' =>'both', 'spaceAfter' =>0));
         foreach ($suspects as $suspect) {
             $arrayso = $case->q(Protocol::findOne($suspect['protocol_id'])->suspect, NCLNameCaseRu::$RODITLN);
-            $section->addText('Обстоятельства, отягчающие наказание обвиняемого: '.$arrayso.' '. $suspect['otyagch']);
-            $section->addText('Обстоятельства, смягчающие наказание обвиняемого: '.$arrayso.' '. $suspect['smyagch']);
+            $section->addText('- Обстоятельства, отягчающие наказание обвиняемого: '.$arrayso.' '. $suspect['otyagch']);
+            $section->addText('- Обстоятельства, смягчающие наказание обвиняемого: '.$arrayso.' '. $suspect['smyagch']);
         }
             $array_area = $case->q($indectment->area, NCLNameCaseRu::$RODITLN);
         $section->addText('Обвинительный акт составлен в '.$deals->officer.' '.$indectment->date_indict. ' и вместе с уголовным делом №'. $deals['number'].' направляется прокурору '.$array_area,null, array('align' =>'both', 'spaceAfter' =>0));
-        $section->addTextBreak(1);
+        $section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
 
         $section->addText($deals->position. $deals->officer,null, array('align' =>'both', 'spaceAfter' =>0));
         $section->addText($deals->rank.'_________________________'. $deals->name,null, array('align' =>'both', 'spaceAfter' =>0));
+
+
+
+
+
         $section = $w->createSection($sectionStyle);
 
-
+$section->addText('Приложение к обвинительному акту ',null, array('align' =>'left', 'spaceAfter' =>0));
         $section->addText('Список лиц, подлежащих вызову в суд ',null, array('align' =>'center', 'spaceAfter' =>0));
+        $svidets = Protocol::find()->where(['=','roleInThis', 'свидетель'])->andWhere(['deal_id' => $id])->all();
+        $poters = Protocol::find()->where(['=','roleInThis', 'потерпевший'])->andWhere(['deal_id' => $id])->all();
+        $section->addText("1. Обвиняемые: ",null, array('align' =>'both', 'spaceAfter' =>0));
         foreach ($iSuspects as $iSuspect) {
-            $section->addText($iSuspect->roleInThis.': '.$iSuspect->suspect. ', зарегистрирован и проживает по адресу: '. $iSuspect->residence,null, array('align' =>'both', 'spaceAfter' =>0));
+            $section->addText('- '.$iSuspect->suspect. ', зарегистрирован и проживает по адресу: '. $iSuspect->residence,null, array('align' =>'both', 'spaceAfter' =>0));
         }
-        foreach ($notSuspects as $notSuspect) {
-            $section->addText($notSuspect->roleInThis.': '.$notSuspect->suspect. ', зарегистрирован и проживает по адресу: '. $notSuspect->residence,null, array('align' =>'both', 'spaceAfter' =>0));
+        $section->addText("2. Потерпевшие: ",null, array('align' =>'both', 'spaceAfter' =>0));
+        foreach ($poters as $poter) {
+            $section->addText('- '.$poter->suspect. ', зарегистрирован и проживает по адресу: '. $poter->residence,null, array('align' =>'both', 'spaceAfter' =>0));
+        }
+        $section->addText("3. Свидетели: ",null, array('align' =>'both', 'spaceAfter' =>0));
 
+        foreach ($svidets as $svidet) {
+            $section->addText('- '.$svidet->suspect. ', зарегистрирован и проживает по адресу: '. $svidet->residence,null, array('align' =>'both', 'spaceAfter' =>0));
         }
+$op=3;
         foreach ($iSuspects as $iSuspect) {
-            $section->addText($iSuspect->otherPerson,null, array('align' =>'both', 'spaceAfter' =>0));
+            $section->addText(++$op.'. '.$iSuspect->otherPerson,null, array('align' =>'both', 'spaceAfter' =>0));
         }
-
+        $section->addText($deals->position. $deals->officer,null, array('align' =>'both', 'spaceAfter' =>0));
+        $section->addText($deals->rank.'_________________________'. $deals->name,null, array('align' =>'both', 'spaceAfter' =>0));
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 //СПРАВКА
+        $numbe=0;
         $section = $w->createSection($sectionStyle);
         $section->addText('Справка ',null, array('align' =>'center', 'spaceAfter' =>0));
-        $section->addTextBreak(1);
+        $section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
         foreach ($Suspects as $Suspect) {
             \Yii::warning(print_r($indectment, true));
-            $section->addText($Suspect->suspect. ' допрошен в качестве подозреваемого '.$Suspect->createdate,null, array('align' =>'both', 'spaceAfter' =>0));
+            $section->addText(++$numbe.'. '.$Suspect->suspect. ' допрошен в качестве подозреваемого '.$Suspect->createdate,null, array('align' =>'both', 'spaceAfter' =>0));
         }
          $case = new NCLNameCaseRu();
         foreach ($suspects as $suspect) {
             $array = $case->q(Protocol::findOne($suspect['protocol_id'])->suspect, NCLNameCaseRu::$RODITLN);
-            $section->addText('Мера процессуального принуждения в отношении '.$array.' - '. $suspect['mera_prin']);
+            $section->addText(++$numbe.'. '.'Мера процессуального принуждения в отношении '.$array.' - '. $suspect['mera_prin'],null, array('align' =>'both', 'spaceAfter' =>0));
         }
-        $section->addText('Вещественные доказательства по уголовному делу: '.$indectment->eviden,null, array('align' =>'both', 'spaceAfter' =>0));
+        $section->addText(++$numbe.'. '.'Вещественные доказательства по уголовному делу: '.$indectment->eviden,null, array('align' =>'both', 'spaceAfter' =>0));
         foreach ($suspects as $suspect) {
-            $section->addText('Процессуальные издержки '.' - '. $suspect['costs']);
+            $section->addText(++$numbe.'. '.'Процессуальные издержки '.' - '. $suspect['costs'],null, array('align' =>'both', 'spaceAfter' =>0));
         }
-        $section->addText('Гражданский иск: '.$indectment->g_isk,null, array('align' =>'both', 'spaceAfter' =>0));
-        $section->addText('Обвинительный акт составлен '.$indectment->date_indict,null, array('align' =>'both', 'spaceAfter' =>0));
-        $section->addTextBreak(1);
+        $section->addText(++$numbe.'. '.'Гражданский иск: '.$indectment->g_isk,null, array('align' =>'both', 'spaceAfter' =>0));
+        $section->addText(++$numbe.'. '.'Обвинительный акт составлен '.$indectment->date_indict,null, array('align' =>'both', 'spaceAfter' =>0));
+        $section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
 
         $section->addText($deals->position. $deals->officer,null, array('align' =>'both', 'spaceAfter' =>0));
         $section->addText($deals->rank.'_________________________'. $deals->name,null, array('align' =>'both', 'spaceAfter' =>0));
 
 
-        $filename = \Yii::getAlias('@app/runtime/files/') . $id . '.docx';
+        $filename = \Yii::getAlias('@app/runtime/files/') . $id .'-'.$deals['number'].'-обвинительный'. '.docx';
         try {
             $w->save($filename, 'Word2007');
             return $filename;

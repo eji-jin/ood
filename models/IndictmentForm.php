@@ -82,11 +82,6 @@ class IndictmentForm extends Model
             foreach ($postValues['notsuspects'] as $notsuspect) {
                 $protocol = Protocol::findOne($notsuspect['protocol_id']);
                 $protocol->indications = $notsuspect['value'];
-                $protocol->indications = $notsuspect['otyagch'];
-                $protocol->indications = $notsuspect['smyagch'];
-
-                $protocol->indications = $notsuspect['costs'];
-                $protocol->indications = $notsuspect['mera_prin'];
                 $protocol->save();
             }
         }

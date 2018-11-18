@@ -32,6 +32,46 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
 
+            <div class="form-group">
+                <label class="col-lg-3" for="area">Район</label>
+                <div class="col-lg-9">
+                    <input id="area" class="form-control" name="indictment[area]" value="<?= $model->area  ?>" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3" for="title">Звание прокурора</label>
+                <div class="col-lg-9">
+                    <input id="title" class="form-control" name="indictment[title]" value="<?= $model->title  ?>" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3" for="prosecutor">ФИО прокурора</label>
+                <div class="col-lg-9">
+                    <input id="prosecutor" class="form-control" name="indictment[prosecutor]" value="<?= $model->prosecutor  ?>" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3" for="chiefposition">Должность начальника</label>
+                <div class="col-lg-9">
+                    <input id="chiefposition" class="form-control" name="indictment[chiefposition]" value="<?= $model->chiefposition  ?>" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3" for="chiefrank">Звание начальника</label>
+                <div class="col-lg-9">
+                    <input id="area" class="form-control" name="indictment[chiefrank]" value="<?= $model->chiefrank  ?>" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3" for="chiefname">ФИО начальника</label>
+                <div class="col-lg-9">
+                    <input id="chiefname" class="form-control" name="indictment[chiefname]" value="<?= $model->chiefname  ?>" >
+                </div>
+            </div>
+            <div class="form-group">
+
+
+
         <?php foreach ($suspects as $index => $suspect): ?>
             <p class="lead"><?= $suspect->suspect; ?></p>
             <div class="form-group">
@@ -91,43 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <input type="hidden" name="indictment[deal_id]" value="<?= $deal_id; ?>">
 
-        <div class="form-group">
-            <label class="col-lg-3" for="area">Район</label>
-            <div class="col-lg-9">
-                <input id="area" class="form-control" name="indictment[area]" value="<?= $model->area  ?>" >
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3" for="title">Звание прокурора</label>
-            <div class="col-lg-9">
-                <input id="title" class="form-control" name="indictment[title]" value="<?= $model->title  ?>" >
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3" for="prosecutor">ФИО прокурора</label>
-            <div class="col-lg-9">
-                <input id="prosecutor" class="form-control" name="indictment[prosecutor]" value="<?= $model->prosecutor  ?>" >
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3" for="chiefposition">Должность начальника</label>
-            <div class="col-lg-9">
-                <input id="chiefposition" class="form-control" name="indictment[chiefposition]" value="<?= $model->chiefposition  ?>" >
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3" for="chiefrank">Звание начальника</label>
-            <div class="col-lg-9">
-                <input id="area" class="form-control" name="indictment[chiefrank]" value="<?= $model->chiefrank  ?>" >
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3" for="chiefname">ФИО начальника</label>
-            <div class="col-lg-9">
-                <input id="chiefname" class="form-control" name="indictment[chiefname]" value="<?= $model->chiefname  ?>" >
-            </div>
-        </div>
-            <div class="form-group">
+
                 <label class="col-lg-3" for="expertise">Гражданский иск</label>
                 <div class="col-lg-9">
                     <input id="expertise" class="form-control" name="indictment[expertise]" value="<?= $model->expertise  ?>" >

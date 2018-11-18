@@ -107,6 +107,7 @@ class ProtocolDownload
         $table->addRow();
         $table->addCell(2267.71, $cellColSpan1) ->  addText($values['roleInThis'], null, array('align' =>'left', 'spaceAfter' =>0));
         $table->addCell(7086.61, $cellColSpan2) ->  addText('________________', null, array('align' =>'right', 'spaceAfter' =>0));
+        $section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
 
          $section->addText('Иные участвующие: ' . $values['otherPerson'],null, array('align' =>'both', 'spaceAfter' =>0));
         $section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
@@ -140,22 +141,26 @@ class ProtocolDownload
         $section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
 
         $section->addText('Мне разъяснено, что в соответствии со ст. 51 Конституции РФ я не обязан свидетельствовать против самого  себя,  своего  супруга (своей  супруги)  и  других  близких  родственников,  круг которых определен п. 4 ст. 5 УПК РФ.',null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
+        $section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
+
+        $table = $section->addTable('Colspan Rowspan');
+        $table->addRow();
+        $table->addCell(2267.71, $cellColSpan1) ->  addText($values['roleInThis'], null, array('align' =>'left', 'spaceAfter' =>0));
+        $table->addCell(7086.61, $cellColSpan2) ->  addText('________________', null, array('align' =>'right', 'spaceAfter' =>0));
+
         if ($values['roleInThis'] == 'подозреваемый'){
             $w->addTableStyle('Colspan Rowspan', $styleTable);
-            $table = $section->addTable('Colspan Rowspan');
-            $table->addRow();
-            $table->addCell(2267.71, $cellColSpan1) ->  addText($values['roleInThis'], null, array('align' =>'left', 'spaceAfter' =>0));
-            $table->addCell(7086.61, $cellColSpan2) ->  addText('________________', null, array('align' =>'right', 'spaceAfter' =>0));
+
             $section->addTextBreak(1);
             $case = new NCLNameCaseRu();
             $sus = $case->q($values['suspect'], NCLNameCaseRu::$RODITLN);
             $section->addText('Подозреваемому ' . $sus . ' объявлено, что он подозревается: '. $values['incriminate'],null, array('align' =>'both', 'spaceAfter' =>0));
         }
 
-
+        $textArray1 = explode("\n", $values['indications']);
         $section->addTextBreak(1, null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
         $section->addText('По существу могу показать следующее:',null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1));
-        $textArray1 = explode("\n", $values['indications']); foreach( $textArray1 as $text) { $section->addText($text,null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1)); }
+        foreach( $textArray1 as $text) { $section->addText($text,null, array('align' =>'both', 'spaceAfter' =>0, 'hanging'=>-1)); }
 
 
 
@@ -163,7 +168,6 @@ class ProtocolDownload
 
         $bodyguard = $case->q($values['otherPerson'], NCLNameCaseRu::$RODITLN);
         $suspectRoditln = $case->q(' '.$values['suspect'], NCLNameCaseRu::$RODITLN);
-        $section->addTextBreak(1,null, array('align' =>'both', 'spaceAfter' =>0));
         $section->addText('Перед началом,  в ходе либо по окончании допроса подозреваемого от участвующих лиц ' . $array .', '.$bodyguard.' заявления '. $values['dopstat'],null, array('align' =>'both', 'spaceAfter' =>0));
         $section->addText('Содержание заявлений: ' . $values['dopstattext'],null, array('align' =>'both', 'spaceAfter' =>0));
         $section->addTextBreak(1,null, array('align' =>'both', 'spaceAfter' =>0));
